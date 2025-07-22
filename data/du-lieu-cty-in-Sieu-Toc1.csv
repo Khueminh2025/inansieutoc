@@ -1,0 +1,93 @@
+﻿category,name,unit,price
+Đóng sách,Đóng kim keo,A4,5000
+Đóng sách,Đóng kim keo,A3,7000
+Đóng sách,Đóng kim keo,A2,15000
+Đóng sách,Đóng kim keo,A1,25000
+Đóng sách,Đóng kim keo,A0,45000
+Đóng sách,Đóng kim kiếng,A4,10000
+Đóng sách,Đóng kim kiếng,A3,15000
+Đóng sách,Đóng kim kiếng,A2,35000
+Đóng sách,Đóng kim kiếng,A1,55000
+Đóng sách,Đóng lò xo xoắn,A4,19000
+Đóng sách,Đóng lò xo xoắn,A3,39000
+Đóng sách,Đóng lò xo nhựa,A4,15000
+Đóng sách,Đóng lò xo nhựa,A3,35000
+Đóng sách,Đóng lò xo kẽm,A4,20000
+Đóng sách,Đóng lò xo kẽm,A3,40000
+Scan,Scan Màu,A4,2000
+Scan,Scan Màu,A3,5000
+Scan,Scan Màu,A2,10000
+Scan,Scan Màu,A1,30000
+Scan,Scan Màu,A0,50000
+Scan,Scan Trắng Đen,A4,2000
+Scan,Scan Trắng Đen,A3,5000
+Scan,Scan Trắng Đen,A2,20000
+Scan,Scan Trắng Đen,A1,40000
+Scan,Scan Trắng Đen,A0,80000
+Gia công,Ép kim,LẦN,100000
+Gia công,Cắt Thành Phẩm,LẦN,10000
+Gia công,Đóng bìa cứng,A4,180000
+Gia công,Đóng bìa cứng,A3,360000
+Gia công,Ép keo nhiệt,A4,80000
+Gia công,Ép keo nhiệt,A3,160000
+Gia công,Cán màn,A4,5000
+Gia công,Cán màn,A3,10000
+Gia công,Cán màn ,A2,15000
+Gia công,Cán màn,A1,30000
+Gia công,Cán màn,A0,60000
+Gia công,Ép Bọc,A4,5000
+Gia công,Ép Bọc,A3,10000
+Gia công,Ép Bọc,A2,25000
+Gia công,Ép Bọc,A1,50000
+Gia công,Ép Bọc,A0,100000
+In nhanh,In Trắng Đen,A4,1000
+In nhanh,In Trắng Đen,A3,3000
+In nhanh,In Trắng Đen,A2,12000
+In nhanh,In Trắng Đen,A1,16000
+In nhanh,In Trắng Đen,A0,32000
+In nhanh,In màu mực nước,A4,2500
+In nhanh,In màu mực nước,A3,5000
+In nhanh,In màu Khổ Lớn,A2,30000
+In nhanh,In màu Khổ Lớn,A1,40000
+In nhanh,In màu Khổ Lớn,A0,80000
+In nhanh,In màu Quá Khổ,M2,200000
+Thiết kế,Thiết Kế theo Mẫu,LẦN,300000
+Thiết kế,Thiết Kế theo yêu cầu,LẦN,500000
+Thiết kế,Chỉnh sửa luận văn,LẦN,200000
+Thiết kế,Tạo file số lượng lớn,LẦN,200000
+Ấn Phẩm Văn Phòng,Danh thiếp,HỘP,150000
+Ấn Phẩm Văn Phòng,Sách ép keo nhiệt,A4,80000
+Ấn Phẩm Văn Phòng,Sách ép keo nhiệt,A3,160000
+Ấn Phẩm Văn Phòng,Sách đóng bìa cứng,A4,180000
+Ấn Phẩm Văn Phòng,Sách đóng bìa cứng,A3,360000
+Ấn Phẩm Văn Phòng,Bao thư,A4,100000
+Ấn Phẩm Văn Phòng,Giấy ghi chú,A4,100000
+Ấn Phẩm Văn Phòng,Giấy tiêu đề,A4,100000
+Ấn Phẩm Văn Phòng,Bìa đựng hồ sơ,A4,100000
+Ấn Phẩm Quảng Cáo,Voucher,A4,100000
+Ấn Phẩm Quảng Cáo,Poster,A4,100000
+Ấn Phẩm Quảng Cáo,Standee,A4,100000
+Ấn Phẩm Quảng Cáo,Tờ rơi,A4,100000
+Ấn Phẩm Quảng Cáo,Tờ gấp,A4,100000
+Ấn Phẩm Quảng Cáo,Vé,A4,100000
+Ấn Phẩm Quảng Cáo,Catalogue,A4,100000
+Ấn Phẩm Quảng Cáo,Hasgtag cầm tay,A4,100000
+Ấn Phẩm Quảng Cáo,Tranh Canvas,A1,100000
+Ấn Phẩm Quảng Cáo,PP bồi Fomex,A1,100000
+Ấn Phẩm Quảng Cáo,Băn rôn,m2,100000
+Ép plasitc,Ép plasic tiêu chuẩn,A4,100000
+Ép plasitc,Ép plastic đóng cuốn,A4,100000
+Ép plasitc,Ép plastic theo yêu cầu,A4,100000
+In Xưởng,In bạt Hiflex,m2,100000
+In Xưởng,In Decal Trong 1m,m2,100000
+In Xưởng,In PP khổ lớn,m2,100000
+In Bản vẽ,In Bản Vẽ Xây Dưng,A1,100000
+In Bản vẽ,In Bản Vẽ Kiến Trúc,A1,100000
+In Bản vẽ,In Hồ Sơ Nộp thầu,A1,100000
+Phụ Kiện In Ấn,Chân standee cuộn,cái,100000
+Phụ Kiện In Ấn,Chân standee hộp,cái,100000
+Phụ Kiện In Ấn,Bìa lá,cái,100000
+Phụ Kiện In Ấn,Bao thư trắng,cái,100000
+Phụ Kiện In Ấn,Hồ sơ xin việc,cái,100000
+Phụ Kiện In Ấn,Foam trắng,cái,100000
+Phụ Kiện In Ấn,Giấy A4 trắng,cái,100000

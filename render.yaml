@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: sieutoc
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn sieutoc.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: sieutoc.settings
+      - key: PYTHON_VERSION
+        value: 3.10
+      - key: DATABASE_URL
+        fromDatabase:
+          name: sieutoc-db
+          property: connectionString
+    autoDeploy: true
+databases:
+  - name: sieutoc-db
+    databaseName: sieutoc
+    user: sieutoc

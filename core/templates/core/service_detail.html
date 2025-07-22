@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-8">
+  <!-- Container chia 2 bên -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    
+    <!-- Hình ảnh sản phẩm bên trái -->
+    <div class="bg-white p-4 rounded-xl shadow">
+      <img src="{{ service.image.url }}" alt="{{ service.name }}" class="w-full h-auto object-contain rounded-lg">
+    </div>
+
+    <!-- Tùy chọn bên phải -->
+    <div class="bg-white p-6 rounded-xl shadow space-y-6">
+      <h1 class="text-2xl font-bold text-red-600 uppercase">{{ service.name }}</h1>
+      <p class="text-sm text-gray-600 italic">{{ service.description }}</p>
+
+      <!-- Thông số cơ bản -->
+      <div>
+        <h2 class="text-green-700 font-bold mb-2">THÔNG SỐ CƠ BẢN</h2>
+        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+          <li>Màu sắc: Nhiều màu</li>
+          <li>Số mặt in: 1 mặt</li>
+          <li>Kỹ thuật in: In KTS</li>
+          <li>Gia công: Bế demi theo file thiết kế</li>
+        </ul>
+      </div>
+
+      <!-- Yêu cầu của bạn -->
+      <div class="space-y-4">
+        <h2 class="text-green-700 font-bold">YÊU CẦU CỦA BẠN</h2>
+
+        <!-- Hình dạng -->
+        <div>
+          <label class="block font-medium mb-1">Hình Dạng 🟢</label>
+          <div class="flex gap-3">
+            <button class="border border-green-500 px-4 py-2 rounded hover:bg-green-100">Tròn</button>
+            <button class="border border-green-500 px-4 py-2 rounded hover:bg-green-100">Chữ nhật</button>
+            <button class="border border-green-500 px-4 py-2 rounded hover:bg-green-100">Vuông</button>
+            <button class="border border-green-500 px-4 py-2 rounded hover:bg-green-100">Theo thiết kế</button>
+          </div>
+        </div>
+
+        <!-- Chất liệu -->
+        <div>
+          <label class="block font-medium mb-1">Chất Liệu 🟢</label>
+          <select class="w-full border border-gray-300 rounded px-3 py-2">
+            <option>Decal Trắng Sữa</option>
+            <option>Decal Giấy</option>
+            <option>Decal Trong</option>
+          </select>
+        </div>
+
+        <!-- Kích thước -->
+        <div>
+          <label class="block font-medium mb-1">KT Thành Phẩm (cm)</label>
+          <div class="flex flex-wrap gap-2">
+            <button class="border px-4 py-2 rounded hover:bg-green-100">2x2 cm</button>
+            <button class="border px-4 py-2 rounded hover:bg-green-100">3x3 cm</button>
+            <button class="border px-4 py-2 rounded hover:bg-green-100">4x4 cm</button>
+            <button class="border px-4 py-2 rounded hover:bg-green-100">5x5 cm</button>
+            <button class="border px-4 py-2 rounded hover:bg-green-100">6x6 cm</button>
+            <button class="border px-4 py-2 rounded hover:bg-green-100">Khác</button>
+          </div>
+        </div>
+
+        <!-- Cán màng -->
+        <div>
+          <label class="block font-medium mb-1">Cán Màng 🟢</label>
+          <div class="flex gap-3">
+            <button class="border px-4 py-2 rounded hover:bg-green-100">Màng mờ 1 mặt</button>
+            <button class="border px-4 py-2 rounded hover:bg-green-100">Màng bóng 1 mặt</button>
+            <button class="border px-4 py-2 rounded hover:bg-green-100">Không</button>
+          </div>
+        </div>
+
+        <!-- Số lượng -->
+        <div class="flex items-center gap-4">
+          <label class="block font-medium">Số lượng</label>
+          <select class="border px-3 py-2 rounded">
+            <option>100 Tem</option>
+            <option>200 Tem</option>
+            <option>500 Tem</option>
+            <option>1000 Tem</option>
+          </select>
+        </div>
+
+        <!-- Thời gian -->
+        <div class="text-sm text-gray-600">
+          <span class="font-semibold">Thời gian thành phẩm:</span> 1 ngày
+        </div>
+
+        <!-- Nút đặt hàng -->
+<a href="{% url 'order_form' %}?service_slug={{ service.slug }}"
+   class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 text-lg font-semibold w-full block text-center">
+   ĐẶT HÀNG NGAY
+</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

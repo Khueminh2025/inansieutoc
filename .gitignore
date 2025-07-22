@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.env
+*.log
+*.pot
+*.pyc
+
+# Django
+*.db
+db.sqlite3
+/media
+
+/local_settings.py
+
+# Virtual Environment
+venv/
+env/
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+
+# Node (nếu có)
+node_modules/
+
+# IDEs
+.idea/
+
+# Render deploy secrets (nếu lỡ có)
+*.render-build.sh
+*.render.yaml.local

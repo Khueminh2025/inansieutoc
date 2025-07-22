@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="text-2xl font-bold">Danh mục dịch vụ</h1>
+<div class="grid grid-cols-2 gap-4">
+  {% for cat in categories %}
+    <a href="{% url 'service_list' cat.slug %}" class="border p-4 rounded shadow">
+      <img src="{{ cat.image.url }}" class="w-full h-48 object-cover mb-2">
+      <h2 class="text-lg font-semibold">{{ cat.name }}</h2>
+    </a>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}In Ấn Siêu Tốc{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="{% static 'css/output.css' %}" rel="stylesheet">
+  </head>
+
+  <body class="bg-gray-100 text-gray-800 font-sans">
+
+    <!-- Navbar -->
+    <header class="bg-white shadow-sm py-2 px-4">
+      <div class="max-w-screen-xl mx-auto flex items-center justify-between gap-4">
+
+        <!-- Logo trái -->
+        <a href="/" class="flex items-center shrink-0">
+          <img src="{% static 'images/logo.jpg' %}" alt="Logo" class="h-10 w-auto">
+        </a>
+
+        <!-- Thanh tìm kiếm ở giữa -->
+        <form action="/" method="get" class="flex-1 mx-6 relative max-w-xl">
+          <input
+            type="text"
+            name="q"
+            placeholder="Tìm kiếm dịch vụ..."
+            class="w-full border border-gray-300 rounded-full pl-4 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-600"
+          >
+          <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-green-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 100-15 7.5 7.5 0 000 15z"/>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Menu bên phải -->
+        <nav class="flex items-center space-x-6 text-sm text-gray-700 font-medium">
+          <a href="{% url 'order_verify' %}" class="hover:text-green-600">Tra cứu đơn hàng</a>
+          <a href="/bao-gia/" class="hover:text-green-600">Báo giá nhanh</a>
+          <a href="/lien-he/" class="hover:text-green-600">Liên hệ</a>
+        </nav>
+      </div>
+    </header>
+    {% if homepage_categories %}
+<div class="bg-gray-50 py-2 shadow-sm border-t border-gray-200">
+  <div class="max-w-screen-xl mx-auto px-4">
+    <div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-gray-700">
+      {% for cat in homepage_categories %}
+        <a href="{% url 'service_list' cat.slug %}" class="hover:text-green-600">
+          {{ cat.name }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endif %}
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  {% block content %}{% endblock %}
+</body>
+    <!-- Footer (tuỳ chọn sau này) -->
+
+  </body>
+</html>
