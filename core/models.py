@@ -7,9 +7,9 @@ from core.slug_utils import unique_slugify
 from core.utils.cloudinary_helpers import generate_unique_public_id
 
 def get_banner_key_choices():
-    static_keys = [('banner_home', 'Trang chủ')]
+    static_keys = [('banner-home', 'Trang chủ')]
     dynamic_keys = [
-        (f'banner_{cat.slug}', f'Banner - {cat.name}')
+        (f'banner-{cat.slug}', f'Banner - {cat.name}')
         for cat in ServiceCategory.objects.all()
     ]
     return static_keys + dynamic_keys
