@@ -1,15 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './templates/**/*.html',           // Template chính
-    './**/templates/**/*.html',        // Template trong app con
-    './static/**/*.js',                // Nếu có JS dùng class Tailwind
+    './templates/**/*.html',
+    './**/templates/**/*.html',
+    './static/**/*.js',
   ],
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
-      },
+        inter: ['Inter', 'sans-serif']
+      }
     },
   },
   plugins: [],

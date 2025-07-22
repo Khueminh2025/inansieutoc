@@ -6,7 +6,7 @@ python manage.py migrate --noinput
 # Install Node packages (Tailwind)
 npm install
 
-npx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --watch
+npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --minify
 # Collect static files
 python manage.py collectstatic --noinput
 
