@@ -96,7 +96,7 @@ class SiteAssetForm(forms.ModelForm):
         # Lấy danh sách key
         static_keys = [('banner_home', 'Trang chủ')]
         dynamic_keys = [
-            (f'banner_{cat.slug}', f'Banner - {cat.name}')
+            (f'banner-{cat.slug}', f'Banner - {cat.name}')
             for cat in ServiceCategory.objects.all()
         ]
         choices = static_keys + dynamic_keys
