@@ -1,21 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 
+{% if banner_url %}
+   <div class="max-w-screen-lg mx-auto px-4 mb-8">
+    <img src="{{ banner_url }}" alt="Banner" class="w-full h-auto object-cover rounded-xl shadow-md">
+  </div>
+{% endif %}
 
-
-<!-- Danh mục dịch vụ -->
-<!-- <h2 class="text-2xl font-bold mb-4">Danh mục dịch vụ</h2>
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-8">
-  {% for cat in categories %}
-    <a href="{% url 'service_list' cat.slug %}" class="bg-white border rounded-md overflow-hidden shadow hover:shadow-md transition duration-200">
-      <img src="{{ cat.image.url }}" class="w-full h-32 sm:h-36 md:h-40 object-cover rounded-t-md" alt="{{ cat.name }}">
-      <div class="p-4">
-        <h3 class="text-lg font-semibold">{{ cat.name }}</h3>
-      </div>
-    </a>
-  {% endfor %}
-</div> -->
-<h2 class="text-2xl font-bold mb-4 text-green-700 text-center">DANH MỤC</h2>
+<h2 class="text-2xl font-bold mb-4 text-green-700 text-center">DANH MỤC DỊCH VỤ</h2>
 <div class="max-w-screen-lg mx-auto px-4">
   <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
     {% for cat in categories %}
@@ -28,29 +21,22 @@
     {% endfor %}
   </div>
 </div>
+<!-- CTA: ĐẶT IN NGAY -->
+<a href="/dich-vu/in-nhanh/" class="block max-w-screen-lg mx-auto mb-12 px-4 mt-4">
+  <div class="relative group overflow-hidden rounded-xl shadow-lg">
+    <!-- Ảnh nền: thu nhỏ chiều cao -->
+    <img src="{% static 'images/konica.jpg' %}" alt="Đặt in ngay"
+         class="w-full h-40 sm:h-48 md:h-100 object-cover transition-transform duration-300 group-hover:scale-105">
 
-
-{% if banner_url %}
-  <div class="mb-8">
-    <img src="{{ banner_url }}" alt="Banner" class="w-full h-auto object-cover rounded-xl shadow-md"">
+    <!-- Dòng chữ hiện khi hover -->
+    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+      <span class="text-gray-600 text-base md:text-lg font-semibold bg-white bg-opacity-60 px-4 py-2 rounded-lg">
+        ĐẶT IN NGAY
+      </span>
+    </div>
   </div>
-{% endif %}
+</a>
 
-<!-- Dịch vụ phổ biến -->
-<!-- {% if featured_services %}
-  <h2 class="text-2xl font-bold mb-4">Dịch vụ phổ biến</h2>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    {% for s in featured_services %}
-      <a href="{% url 'service_detail' s.slug %}" class="bg-white border rounded-md overflow-hidden shadow hover:shadow-md transition duration-200">
-        <img src="{{ s.image.url }}" class="w-full h-32 sm:h-36 md:h-40 object-cover rounded-t-md" alt="{{ s.name }}">
-        <div class="p-4">
-          <h3 class="text-lg font-semibold">{{ s.name }} - {{ s.unit }}</h3>
-          <p class="text-green-600 font-bold">{{ s.price|floatformat:0 }} đ</p>
-        </div>
-      </a>
-    {% endfor %}
-  </div>
-{% endif %} -->
 
 {% if featured_services %}
   <h2 class="text-2xl font-bold mb-4 text-green-700 text-center">ẤN PHẨM PHỔ BIẾN</h2>

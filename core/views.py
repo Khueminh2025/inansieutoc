@@ -54,7 +54,7 @@ def order_verify(request):
 def home(request):
     categories = ServiceCategory.objects.all()
     featured_services = Service.objects.filter(is_featured=True)[:6]
-    banner_url = get_asset_url("home-banner")
+    banner_url = get_asset_url("banner-home")
 
     return render(request, 'core/home.html', {
         'categories': categories,

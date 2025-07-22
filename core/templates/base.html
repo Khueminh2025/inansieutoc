@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
 
   <body class="bg-gray-100 text-gray-800 font-sans">
@@ -55,11 +56,109 @@
   </div>
 </div>
 {% endif %}
-<body class="bg-gray-100 text-gray-800 font-sans">
+<div class="w-full bg-black h-10 flex items-center justify-center text-white text-sm"
+     x-data="{
+       messages: [
+         '⭐ Semi-Annual Sale: Up to 40% off almost everything | Ends July 25',
+         '🚚 Free shipping on orders over $100',
+         '🔥 Today\'s Deal: 40% off sticker singles'
+       ],
+       currentIndex: 0,
+       get currentMessage() {
+         return this.messages[this.currentIndex];
+       },
+       init() {
+         setInterval(() => {
+           this.currentIndex = (this.currentIndex + 1) % this.messages.length;
+         }, 10000); // mỗi 10s
+       }
+     }"
+     x-init="init()"
+>
+  <span x-text="currentMessage" class="transition-opacity duration-500 ease-in-out"></span>
+</div>
 
   {% block content %}{% endblock %}
-</body>
-    <!-- Footer (tuỳ chọn sau này) -->
+  
+  <!-- Footer (tuỳ chọn sau này) -->
+<footer class="bg-white text-gray-700 border-t border-gray-200 py-12 mt-10">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 text-sm">
+      
+      <!-- Thông tin 1 -->
+      <div class="md:col-span-1 flex flex-col h-40 justify-between">
+        <div class="h-1/2">
+          <h3 class="font-semibold mb-2">CTY TNHH Siêu Tốc</h3>
+          <p>GPKD số:00000000</p>
+        </div>
+        <div class="h-1/2">
+          <h3 class="font-semibold mb-2">Giờ Hoạt Động</h3>
+          <p>Từ Thứ 2 đến Thứ 6</p>
+          <p>7h00 - 19h00</p>
+          <p>Từ Thứ 7 đến Chủ Nhật</p>
+          <p>7h30 - 19h00</p>
+        </div>
+      </div>
 
-  </body>
+      <!-- Thông tin 2 -->
+      <div class="md:col-span-2 flex flex-col h-40">
+        <div class="h-[70%]">
+          <h3 class="font-semibold mb-2">Tư vấn đặt hàng</h3>
+          <p>Liên Hệ Số Điện Thoại</p>
+          <ul class="space-y-1">
+            <li>00000000000</li>
+            <li>00000000000</li>
+            <li>00000000000</li>
+          </ul>
+        </div>
+        <div class="h-[30%]">
+ <h3 class="font-semibold mb-2">Chúng tôi luôn luôn quan tâm đến các khách hàng, Chất lượng luôn đặt lên hàng đầu</h3>
+        </div>
+      </div>
+
+      <!-- Thông tin 3 -->
+      <div class="md:col-span-1 flex flex-col h-40 justify-between">
+        <div class="h-[60%]">
+          <h3 class="font-semibold mb-2">Tư vấn đặt hàng</h3>
+          <p>Liên Hệ Số Điện Thoại</p>
+          <ul class="space-y-1">
+            <li>00000000000</li>
+            <li>00000000000</li>
+            <li>00000000000</li>
+          </ul>
+        </div>
+        <div class="h-[40%]">
+          <h3 class="font-semibold mb-2">Chúng tôi luôn luôn quan tâm đến các khách hàng, Chất lượng luôn đặt lên hàng đầu</h3>
+
+        </div>
+      </div>
+
+      <!-- Thông tin 4 -->
+      <div class="md:col-span-1 flex flex-col h-40 justify-between">
+        <div class="h-[40%]">
+          <h3 class="font-semibold mb-2">Thông tin 4 - Hàng 1</h3>
+          <ul class="space-y-1">
+            <li>Hotline</li>
+          </ul>
+        </div>
+        <div class="h-[60%]">
+          <h3 class="font-semibold mb-2">Thông tin 4 - Hàng 2</h3>
+          <ul class="space-y-1">
+            <li>Email</li>
+            <li>Facebook</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Địa chỉ Google Maps -->
+    <div class="mt-10 text-center text-sm text-gray-600">
+      📍
+      <a href="https://www.google.com/maps?q=134b+Nguyễn+Đình+Chiểu,+Quận+3" target="_blank" class="underline hover:text-blue-600">
+        134B Nguyễn Đình Chiểu, Quận 3, TP. Hồ Chí Minh
+      </a>
+    </div>
+  </div>
+</footer>
+</body>    
 </html>
