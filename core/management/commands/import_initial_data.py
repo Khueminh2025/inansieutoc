@@ -3,7 +3,7 @@ import os
 from django.core.management.base import BaseCommand
 from core.models import (
     Category, Shape, Size, Laminate,
-    Material, Paper, Service, ServiceOption
+    Material, Paper, Service, ServiceOption, ServiceOptionPrice
 )
 
 class Command(BaseCommand):
@@ -56,29 +56,66 @@ class Command(BaseCommand):
                         'description': row['description'].strip() or None,
                         'is_featured': bool(row.get('is_featured') in ['1', 'True', 'true']),
                         'category': cat,
-                        'price': 0,           # nếu bạn muốn có giá mặc định
                     }
                 )
         self.stdout.write(self.style.SUCCESS('✔ Đã import Services'))
 
-        # 4. Import ServiceOptions
+        # 4. Import ServiceOptions (KHÔNG có price, quantity)
         with open(os.path.join(base_dir, 'service_options_full.csv'), encoding='utf-8-sig') as f:
             reader = csv.DictReader(f)
             for row in reader:
-                svc = Service.objects.get(name=row['service_name'])
+                svc = Service.objects.filter(name=row['service_name'].strip()).first()
+                if not svc:
+                    self.stdout.write(self.style.WARNING(f"⚠ Không tìm thấy Service {row['service_name']}, bỏ qua"))
+                    continue
+
                 def get_fk(model, val):
                     return model.objects.filter(name=val.strip()).first() if val else None
 
-                ServiceOption.objects.create(
+                ServiceOption.objects.update_or_create(
                     service=svc,
                     paper=get_fk(Paper, row['paper_name']),
                     material=get_fk(Material, row['material_name']),
                     shape=get_fk(Shape, row['shape_name']),
                     size=get_fk(Size, row['size_name']),
                     laminate=get_fk(Laminate, row['laminate_name']),
-                    quantity=int(row['quantity']),
-                    price=float(row['price'] or 0),
                 )
         self.stdout.write(self.style.SUCCESS('✔ Đã import ServiceOptions'))
+
+        # 5. Import ServiceOptionPrices
+        price_file = os.path.join(base_dir, 'service_option_prices.csv')
+        if os.path.exists(price_file):
+            with open(price_file, encoding='utf-8-sig') as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    svc = Service.objects.filter(name=row['service_name'].strip()).first()
+                    if not svc:
+                        self.stdout.write(self.style.WARNING(f"⚠ Không tìm thấy Service {row['service_name']} trong giá, bỏ qua"))
+                        continue
+
+                    option = ServiceOption.objects.filter(
+                        service=svc,
+                        paper=get_fk(Paper, row.get('paper_name')),
+                        material=get_fk(Material, row.get('material_name')),
+                        shape=get_fk(Shape, row.get('shape_name')),
+                        size=get_fk(Size, row.get('size_name')),
+                        laminate=get_fk(Laminate, row.get('laminate_name')),
+                    ).first()
+
+                    if not option:
+                        self.stdout.write(self.style.WARNING(f"⚠ Không tìm thấy ServiceOption cho {row['service_name']}, bỏ qua"))
+                        continue
+
+                    quantity = int(row['quantity'])
+                    price = float(row['price'])
+
+                    ServiceOptionPrice.objects.update_or_create(
+                        service_option=option,
+                        quantity=quantity,
+                        defaults={'price': price}
+                    )
+            self.stdout.write(self.style.SUCCESS('✔ Đã import ServiceOptionPrices'))
+        else:
+            self.stdout.write(self.style.WARNING('⚠ Chưa có file service_option_prices.csv, bỏ qua bước import giá'))
 
         self.stdout.write(self.style.SUCCESS('🎉 Hoàn thành import dữ liệu!'))
