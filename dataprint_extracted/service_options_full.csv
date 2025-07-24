@@ -1,0 +1,440 @@
+﻿service_id,service_name,paper_name,material_name,shape_name,size_name,laminate_name,quantity,price
+1,Đóng kim keo,,,,A5,,1,1
+1,Đóng kim keo,,,,A4,,1,1
+1,Đóng kim keo,,,,A3,,1,1
+1,Đóng kim keo,,,,A2,,1,1
+1,Đóng kim keo,,,,A1,,1,1
+1,Đóng kim keo,,,,A0,,1,1
+1,Đóng kim keo,,,,Khác,,1,1
+2,Đóng kim kiếng,,,,A5,,1,1
+2,Đóng kim kiếng,,,,A4,,1,1
+2,Đóng kim kiếng,,,,A3,,1,1
+2,Đóng kim kiếng,,,,A2,,1,1
+2,Đóng kim kiếng,,,,A1,,1,1
+2,Đóng kim kiếng,,,,A0,,1,1
+2,Đóng kim kiếng,,,,Khác,,1,1
+3,Đóng lò xo xoắn,,,,A5,,1,1
+3,Đóng lò xo xoắn,,,,A4,,1,1
+3,Đóng lò xo xoắn,,,,A3,,1,1
+3,Đóng lò xo xoắn,,,,A2,,1,1
+3,Đóng lò xo xoắn,,,,A1,,1,1
+3,Đóng lò xo xoắn,,,,A0,,1,1
+3,Đóng lò xo xoắn,,,,Khác,,1,1
+4,Đóng lò xo nhựa,,,,A5,,1,1
+4,Đóng lò xo nhựa,,,,A4,,1,1
+4,Đóng lò xo nhựa,,,,A3,,1,1
+4,Đóng lò xo nhựa,,,,A2,,1,1
+4,Đóng lò xo nhựa,,,,A1,,1,1
+4,Đóng lò xo nhựa,,,,A0,,1,1
+4,Đóng lò xo nhựa,,,,Khác,,1,1
+5,Đóng lò xo kẽm,,,,A5,,1,1
+5,Đóng lò xo kẽm,,,,A4,,1,1
+5,Đóng lò xo kẽm,,,,A3,,1,1
+5,Đóng lò xo kẽm,,,,A2,,1,1
+5,Đóng lò xo kẽm,,,,A1,,1,1
+5,Đóng lò xo kẽm,,,,A0,,1,1
+5,Đóng lò xo kẽm,,,,Khác,,1,1
+6,Ép keo nhiệt,,,,A5,,1,1
+6,Ép keo nhiệt,,,,A4,,1,1
+6,Ép keo nhiệt,,,,A3,,1,1
+6,Ép keo nhiệt,,,,A2,,1,1
+6,Ép keo nhiệt,,,,A1,,1,1
+6,Ép keo nhiệt,,,,A0,,1,1
+6,Ép keo nhiệt,,,,Khác,,1,1
+7,Đóng bìa cứng,,,,A5,,1,1
+7,Đóng bìa cứng,,,,A4,,1,1
+7,Đóng bìa cứng,,,,A3,,1,1
+7,Đóng bìa cứng,,,,A2,,1,1
+7,Đóng bìa cứng,,,,A1,,1,1
+7,Đóng bìa cứng,,,,A0,,1,1
+7,Đóng bìa cứng,,,,Khác,,1,1
+8,Scan,,,,A5,,1,1
+8,Scan,,,,A4,,1,1
+8,Scan,,,,A3,,1,1
+8,Scan,,,,A2,,1,1
+8,Scan,,,,A1,,1,1
+8,Scan,,,,A0,,1,1
+8,Scan,,,,Khác,,1,1
+9,Ép kim,,,,A5,,1,1
+9,Ép kim,,,,A4,,1,1
+9,Ép kim,,,,A3,,1,1
+9,Ép kim,,,,A2,,1,1
+9,Ép kim,,,,A1,,1,1
+9,Ép kim,,,,A0,,1,1
+9,Ép kim,,,,Khác,,1,1
+11,Cán màn,,,,A5,,1,1
+11,Cán màn,,,,A4,,1,1
+11,Cán màn,,,,A3,,1,1
+11,Cán màn,,,,A2,,1,1
+11,Cán màn,,,,A1,,1,1
+11,Cán màn,,,,A0,,1,1
+11,Cán màn,,,,Khác,,1,1
+11,Cán màn,,,,,"Cán màng bóng
+",1,1
+11,Cán màn,,,,,"Cán màng mờ
+",1,1
+11,Cán màn,,,,,Không cán màng,1,1
+12,Ép plasitc,,,,A5,,1,1
+12,Ép plasitc,,,,A4,,1,1
+12,Ép plasitc,,,,A3,,1,1
+12,Ép plasitc,,,,A2,,1,1
+12,Ép plasitc,,,,A1,,1,1
+12,Ép plasitc,,,,A0,,1,1
+12,Ép plasitc,,,,Khác,,1,1
+13,Ép bọc,,,,A5,,1,1
+13,Ép bọc,,,,A4,,1,1
+13,Ép bọc,,,,A3,,1,1
+13,Ép bọc,,,,A2,,1,1
+13,Ép bọc,,,,A1,,1,1
+13,Ép bọc,,,,A0,,1,1
+13,Ép bọc,,,,Khác,,1,1
+14,In trắng đen,Ford 80,,,,,1,1
+14,In trắng đen,Ford 180,,,,,1,1
+14,In trắng đen,Ford 250,,,,,1,1
+14,In trắng đen,Ford 300,,,,,1,1
+14,In trắng đen,Couche 150,,,,,1,1
+14,In trắng đen,Couche 200,,,,,1,1
+14,In trắng đen,Couche 250,,,,,1,1
+14,In trắng đen,Couche 300,,,,,1,1
+14,In trắng đen,Canson 250,,,,,1,1
+14,In trắng đen,Gân trắng 250,,,,,1,1
+14,In trắng đen,Gân vàng 280,,,,,1,1
+14,In trắng đen,Ivory 300,,,,,1,1
+14,In trắng đen,Giấy ảnh 250,,,,,1,1
+14,In trắng đen,Khác,,,,,1,1
+14,In trắng đen,,,,A5,,1,1
+14,In trắng đen,,,,A4,,1,1
+14,In trắng đen,,,,A3,,1,1
+14,In trắng đen,,,,A2,,1,1
+14,In trắng đen,,,,A1,,1,1
+14,In trắng đen,,,,A0,,1,1
+14,In trắng đen,,,,Khác,,1,1
+15,In màu,Ford 80,,,,,1,1
+15,In màu,Ford 180,,,,,1,1
+15,In màu,Ford 250,,,,,1,1
+15,In màu,Ford 300,,,,,1,1
+15,In màu,Couche 150,,,,,1,1
+15,In màu,Couche 200,,,,,1,1
+15,In màu,Couche 250,,,,,1,1
+15,In màu,Couche 300,,,,,1,1
+15,In màu,Canson 250,,,,,1,1
+15,In màu,Gân trắng 250,,,,,1,1
+15,In màu,Gân vàng 280,,,,,1,1
+15,In màu,Ivory 300,,,,,1,1
+15,In màu,Giấy ảnh 250,,,,,1,1
+15,In màu,Khác,,,,,1,1
+15,In màu,,,,A5,,1,1
+15,In màu,,,,A4,,1,1
+15,In màu,,,,A3,,1,1
+15,In màu,,,,A2,,1,1
+15,In màu,,,,A1,,1,1
+15,In màu,,,,A0,,1,1
+15,In màu,,,,Khác,,1,1
+16,In bản vẽ,Ford 80,,,,,1,1
+16,In bản vẽ,Ford 180,,,,,1,1
+16,In bản vẽ,Ford 250,,,,,1,1
+16,In bản vẽ,Ford 300,,,,,1,1
+16,In bản vẽ,Couche 150,,,,,1,1
+16,In bản vẽ,Couche 200,,,,,1,1
+16,In bản vẽ,Couche 250,,,,,1,1
+16,In bản vẽ,Couche 300,,,,,1,1
+16,In bản vẽ,Canson 250,,,,,1,1
+16,In bản vẽ,Gân trắng 250,,,,,1,1
+16,In bản vẽ,Gân vàng 280,,,,,1,1
+16,In bản vẽ,Ivory 300,,,,,1,1
+16,In bản vẽ,Giấy ảnh 250,,,,,1,1
+16,In bản vẽ,Khác,,,,,1,1
+16,In bản vẽ,,,,A5,,1,1
+16,In bản vẽ,,,,A4,,1,1
+16,In bản vẽ,,,,A3,,1,1
+16,In bản vẽ,,,,A2,,1,1
+16,In bản vẽ,,,,A1,,1,1
+16,In bản vẽ,,,,A0,,1,1
+16,In bản vẽ,,,,Khác,,1,1
+21,Danh thiếp,Ford 80,,,,,1,1
+21,Danh thiếp,Ford 180,,,,,1,1
+21,Danh thiếp,Ford 250,,,,,1,1
+21,Danh thiếp,Ford 300,,,,,1,1
+21,Danh thiếp,Couche 150,,,,,1,1
+21,Danh thiếp,Couche 200,,,,,1,1
+21,Danh thiếp,Couche 250,,,,,1,1
+21,Danh thiếp,Couche 300,,,,,1,1
+21,Danh thiếp,Canson 250,,,,,1,1
+21,Danh thiếp,Gân trắng 250,,,,,1,1
+21,Danh thiếp,Gân vàng 280,,,,,1,1
+21,Danh thiếp,Ivory 300,,,,,1,1
+21,Danh thiếp,Giấy ảnh 250,,,,,1,1
+21,Danh thiếp,Khác,,,,,1,1
+21,Danh thiếp,,,,A5,,1,1
+21,Danh thiếp,,,,A4,,1,1
+21,Danh thiếp,,,,A3,,1,1
+21,Danh thiếp,,,,A2,,1,1
+21,Danh thiếp,,,,A1,,1,1
+21,Danh thiếp,,,,A0,,1,1
+21,Danh thiếp,,,,Khác,,1,1
+22,Sách ép keo nhiệt,,,,A5,,1,1
+22,Sách ép keo nhiệt,,,,A4,,1,1
+22,Sách ép keo nhiệt,,,,A3,,1,1
+22,Sách ép keo nhiệt,,,,A2,,1,1
+22,Sách ép keo nhiệt,,,,A1,,1,1
+22,Sách ép keo nhiệt,,,,A0,,1,1
+22,Sách ép keo nhiệt,,,,Khác,,1,1
+23,Sách đóng bìa cứng,,,,A5,,1,1
+23,Sách đóng bìa cứng,,,,A4,,1,1
+23,Sách đóng bìa cứng,,,,A3,,1,1
+23,Sách đóng bìa cứng,,,,A2,,1,1
+23,Sách đóng bìa cứng,,,,A1,,1,1
+23,Sách đóng bìa cứng,,,,A0,,1,1
+23,Sách đóng bìa cứng,,,,Khác,,1,1
+24,Bao thư,Ford 80,,,,,1,1
+24,Bao thư,Ford 180,,,,,1,1
+24,Bao thư,Ford 250,,,,,1,1
+24,Bao thư,Ford 300,,,,,1,1
+24,Bao thư,Couche 150,,,,,1,1
+24,Bao thư,Couche 200,,,,,1,1
+24,Bao thư,Couche 250,,,,,1,1
+24,Bao thư,Couche 300,,,,,1,1
+24,Bao thư,Canson 250,,,,,1,1
+24,Bao thư,Gân trắng 250,,,,,1,1
+24,Bao thư,Gân vàng 280,,,,,1,1
+24,Bao thư,Ivory 300,,,,,1,1
+24,Bao thư,Giấy ảnh 250,,,,,1,1
+24,Bao thư,Khác,,,,,1,1
+24,Bao thư,,,,A5,,1,1
+24,Bao thư,,,,A4,,1,1
+24,Bao thư,,,,A3,,1,1
+24,Bao thư,,,,A2,,1,1
+24,Bao thư,,,,A1,,1,1
+24,Bao thư,,,,A0,,1,1
+24,Bao thư,,,,Khác,,1,1
+25,Giấy ghi chú,Ford 80,,,,,1,1
+25,Giấy ghi chú,Ford 180,,,,,1,1
+25,Giấy ghi chú,Ford 250,,,,,1,1
+25,Giấy ghi chú,Ford 300,,,,,1,1
+25,Giấy ghi chú,Couche 150,,,,,1,1
+25,Giấy ghi chú,Couche 200,,,,,1,1
+25,Giấy ghi chú,Couche 250,,,,,1,1
+25,Giấy ghi chú,Couche 300,,,,,1,1
+25,Giấy ghi chú,Canson 250,,,,,1,1
+25,Giấy ghi chú,Gân trắng 250,,,,,1,1
+25,Giấy ghi chú,Gân vàng 280,,,,,1,1
+25,Giấy ghi chú,Ivory 300,,,,,1,1
+25,Giấy ghi chú,Giấy ảnh 250,,,,,1,1
+25,Giấy ghi chú,Khác,,,,,1,1
+25,Giấy ghi chú,,,,A5,,1,1
+25,Giấy ghi chú,,,,A4,,1,1
+25,Giấy ghi chú,,,,A3,,1,1
+25,Giấy ghi chú,,,,A2,,1,1
+25,Giấy ghi chú,,,,A1,,1,1
+25,Giấy ghi chú,,,,A0,,1,1
+25,Giấy ghi chú,,,,Khác,,1,1
+26,Giấy tiêu đề,Ford 80,,,,,1,1
+26,Giấy tiêu đề,Ford 180,,,,,1,1
+26,Giấy tiêu đề,Ford 250,,,,,1,1
+26,Giấy tiêu đề,Ford 300,,,,,1,1
+26,Giấy tiêu đề,Couche 150,,,,,1,1
+26,Giấy tiêu đề,Couche 200,,,,,1,1
+26,Giấy tiêu đề,Couche 250,,,,,1,1
+26,Giấy tiêu đề,Couche 300,,,,,1,1
+26,Giấy tiêu đề,Canson 250,,,,,1,1
+26,Giấy tiêu đề,Gân trắng 250,,,,,1,1
+26,Giấy tiêu đề,Gân vàng 280,,,,,1,1
+26,Giấy tiêu đề,Ivory 300,,,,,1,1
+26,Giấy tiêu đề,Giấy ảnh 250,,,,,1,1
+26,Giấy tiêu đề,Khác,,,,,1,1
+26,Giấy tiêu đề,,,,A5,,1,1
+26,Giấy tiêu đề,,,,A4,,1,1
+26,Giấy tiêu đề,,,,A3,,1,1
+26,Giấy tiêu đề,,,,A2,,1,1
+26,Giấy tiêu đề,,,,A1,,1,1
+26,Giấy tiêu đề,,,,A0,,1,1
+26,Giấy tiêu đề,,,,Khác,,1,1
+27,Bìa đựng hồ sơ,Ford 80,,,,,1,1
+27,Bìa đựng hồ sơ,Ford 180,,,,,1,1
+27,Bìa đựng hồ sơ,Ford 250,,,,,1,1
+27,Bìa đựng hồ sơ,Ford 300,,,,,1,1
+27,Bìa đựng hồ sơ,Couche 150,,,,,1,1
+27,Bìa đựng hồ sơ,Couche 200,,,,,1,1
+27,Bìa đựng hồ sơ,Couche 250,,,,,1,1
+27,Bìa đựng hồ sơ,Couche 300,,,,,1,1
+27,Bìa đựng hồ sơ,Canson 250,,,,,1,1
+27,Bìa đựng hồ sơ,Gân trắng 250,,,,,1,1
+27,Bìa đựng hồ sơ,Gân vàng 280,,,,,1,1
+27,Bìa đựng hồ sơ,Ivory 300,,,,,1,1
+27,Bìa đựng hồ sơ,Giấy ảnh 250,,,,,1,1
+27,Bìa đựng hồ sơ,Khác,,,,,1,1
+27,Bìa đựng hồ sơ,,,,A5,,1,1
+27,Bìa đựng hồ sơ,,,,A4,,1,1
+27,Bìa đựng hồ sơ,,,,A3,,1,1
+27,Bìa đựng hồ sơ,,,,A2,,1,1
+27,Bìa đựng hồ sơ,,,,A1,,1,1
+27,Bìa đựng hồ sơ,,,,A0,,1,1
+27,Bìa đựng hồ sơ,,,,Khác,,1,1
+28,Voucher,Ford 80,,,,,1,1
+28,Voucher,Ford 180,,,,,1,1
+28,Voucher,Ford 250,,,,,1,1
+28,Voucher,Ford 300,,,,,1,1
+28,Voucher,Couche 150,,,,,1,1
+28,Voucher,Couche 200,,,,,1,1
+28,Voucher,Couche 250,,,,,1,1
+28,Voucher,Couche 300,,,,,1,1
+28,Voucher,Canson 250,,,,,1,1
+28,Voucher,Gân trắng 250,,,,,1,1
+28,Voucher,Gân vàng 280,,,,,1,1
+28,Voucher,Ivory 300,,,,,1,1
+28,Voucher,Giấy ảnh 250,,,,,1,1
+28,Voucher,Khác,,,,,1,1
+28,Voucher,,,,A5,,1,1
+28,Voucher,,,,A4,,1,1
+28,Voucher,,,,A3,,1,1
+28,Voucher,,,,A2,,1,1
+28,Voucher,,,,A1,,1,1
+28,Voucher,,,,A0,,1,1
+28,Voucher,,,,Khác,,1,1
+29,Poster,Ford 80,,,,,1,1
+29,Poster,Ford 180,,,,,1,1
+29,Poster,Ford 250,,,,,1,1
+29,Poster,Ford 300,,,,,1,1
+29,Poster,Couche 150,,,,,1,1
+29,Poster,Couche 200,,,,,1,1
+29,Poster,Couche 250,,,,,1,1
+29,Poster,Couche 300,,,,,1,1
+29,Poster,Canson 250,,,,,1,1
+29,Poster,Gân trắng 250,,,,,1,1
+29,Poster,Gân vàng 280,,,,,1,1
+29,Poster,Ivory 300,,,,,1,1
+29,Poster,Giấy ảnh 250,,,,,1,1
+29,Poster,Khác,,,,,1,1
+29,Poster,,PP ngoài trời,,,,1,1
+29,Poster,,PP trong nhà,,,,1,1
+29,Poster,,Hiflex,,,,1,1
+29,Poster,,Decal trong,,,,1,1
+29,Poster,,Decal giấy,,,,1,1
+29,Poster,,Decal nhựa,,,,1,1
+29,Poster,,Khác,,,,1,1
+29,Poster,,,,A5,,1,1
+29,Poster,,,,A4,,1,1
+29,Poster,,,,A3,,1,1
+29,Poster,,,,A2,,1,1
+29,Poster,,,,A1,,1,1
+29,Poster,,,,A0,,1,1
+29,Poster,,,,Khác,,1,1
+30,Standee,,PP ngoài trời,,,,1,1
+30,Standee,,PP trong nhà,,,,1,1
+30,Standee,,Hiflex,,,,1,1
+30,Standee,,Decal trong,,,,1,1
+30,Standee,,Decal giấy,,,,1,1
+30,Standee,,Decal nhựa,,,,1,1
+30,Standee,,Khác,,,,1,1
+31,Tờ rơi,Ford 80,,,,,1,1
+31,Tờ rơi,Ford 180,,,,,1,1
+31,Tờ rơi,Ford 250,,,,,1,1
+31,Tờ rơi,Ford 300,,,,,1,1
+31,Tờ rơi,Couche 150,,,,,1,1
+31,Tờ rơi,Couche 200,,,,,1,1
+31,Tờ rơi,Couche 250,,,,,1,1
+31,Tờ rơi,Couche 300,,,,,1,1
+31,Tờ rơi,Canson 250,,,,,1,1
+31,Tờ rơi,Gân trắng 250,,,,,1,1
+31,Tờ rơi,Gân vàng 280,,,,,1,1
+31,Tờ rơi,Ivory 300,,,,,1,1
+31,Tờ rơi,Giấy ảnh 250,,,,,1,1
+31,Tờ rơi,Khác,,,,,1,1
+31,Tờ rơi,,,,A5,,1,1
+31,Tờ rơi,,,,A4,,1,1
+31,Tờ rơi,,,,A3,,1,1
+31,Tờ rơi,,,,A2,,1,1
+31,Tờ rơi,,,,A1,,1,1
+31,Tờ rơi,,,,A0,,1,1
+31,Tờ rơi,,,,Khác,,1,1
+32,Tờ gấp,Ford 80,,,,,1,1
+32,Tờ gấp,Ford 180,,,,,1,1
+32,Tờ gấp,Ford 250,,,,,1,1
+32,Tờ gấp,Ford 300,,,,,1,1
+32,Tờ gấp,Couche 150,,,,,1,1
+32,Tờ gấp,Couche 200,,,,,1,1
+32,Tờ gấp,Couche 250,,,,,1,1
+32,Tờ gấp,Couche 300,,,,,1,1
+32,Tờ gấp,Canson 250,,,,,1,1
+32,Tờ gấp,Gân trắng 250,,,,,1,1
+32,Tờ gấp,Gân vàng 280,,,,,1,1
+32,Tờ gấp,Ivory 300,,,,,1,1
+32,Tờ gấp,Giấy ảnh 250,,,,,1,1
+32,Tờ gấp,Khác,,,,,1,1
+32,Tờ gấp,,,,A5,,1,1
+32,Tờ gấp,,,,A4,,1,1
+32,Tờ gấp,,,,A3,,1,1
+32,Tờ gấp,,,,A2,,1,1
+32,Tờ gấp,,,,A1,,1,1
+32,Tờ gấp,,,,A0,,1,1
+32,Tờ gấp,,,,Khác,,1,1
+33,Vé,Ford 80,,,,,1,1
+33,Vé,Ford 180,,,,,1,1
+33,Vé,Ford 250,,,,,1,1
+33,Vé,Ford 300,,,,,1,1
+33,Vé,Couche 150,,,,,1,1
+33,Vé,Couche 200,,,,,1,1
+33,Vé,Couche 250,,,,,1,1
+33,Vé,Couche 300,,,,,1,1
+33,Vé,Canson 250,,,,,1,1
+33,Vé,Gân trắng 250,,,,,1,1
+33,Vé,Gân vàng 280,,,,,1,1
+33,Vé,Ivory 300,,,,,1,1
+33,Vé,Giấy ảnh 250,,,,,1,1
+33,Vé,Khác,,,,,1,1
+33,Vé,,,,A5,,1,1
+33,Vé,,,,A4,,1,1
+33,Vé,,,,A3,,1,1
+33,Vé,,,,A2,,1,1
+33,Vé,,,,A1,,1,1
+33,Vé,,,,A0,,1,1
+33,Vé,,,,Khác,,1,1
+34,Catalogue,Ford 80,,,,,1,1
+34,Catalogue,Ford 180,,,,,1,1
+34,Catalogue,Ford 250,,,,,1,1
+34,Catalogue,Ford 300,,,,,1,1
+34,Catalogue,Couche 150,,,,,1,1
+34,Catalogue,Couche 200,,,,,1,1
+34,Catalogue,Couche 250,,,,,1,1
+34,Catalogue,Couche 300,,,,,1,1
+34,Catalogue,Canson 250,,,,,1,1
+34,Catalogue,Gân trắng 250,,,,,1,1
+34,Catalogue,Gân vàng 280,,,,,1,1
+34,Catalogue,Ivory 300,,,,,1,1
+34,Catalogue,Giấy ảnh 250,,,,,1,1
+34,Catalogue,Khác,,,,,1,1
+34,Catalogue,,,,A5,,1,1
+34,Catalogue,,,,A4,,1,1
+34,Catalogue,,,,A3,,1,1
+34,Catalogue,,,,A2,,1,1
+34,Catalogue,,,,A1,,1,1
+34,Catalogue,,,,A0,,1,1
+34,Catalogue,,,,Khác,,1,1
+35,Hasgtag cầm tay,,PP ngoài trời,,,,1,1
+35,Hasgtag cầm tay,,PP trong nhà,,,,1,1
+35,Hasgtag cầm tay,,Hiflex,,,,1,1
+35,Hasgtag cầm tay,,Decal trong,,,,1,1
+35,Hasgtag cầm tay,,Decal giấy,,,,1,1
+35,Hasgtag cầm tay,,Decal nhựa,,,,1,1
+35,Hasgtag cầm tay,,Khác,,,,1,1
+36,Tranh Canvas,,PP ngoài trời,,,,1,1
+36,Tranh Canvas,,PP trong nhà,,,,1,1
+36,Tranh Canvas,,Hiflex,,,,1,1
+36,Tranh Canvas,,Decal trong,,,,1,1
+36,Tranh Canvas,,Decal giấy,,,,1,1
+36,Tranh Canvas,,Decal nhựa,,,,1,1
+36,Tranh Canvas,,Khác,,,,1,1
+37,PP bồi Fomex,,PP ngoài trời,,,,1,1
+37,PP bồi Fomex,,PP trong nhà,,,,1,1
+37,PP bồi Fomex,,Hiflex,,,,1,1
+37,PP bồi Fomex,,Decal trong,,,,1,1
+37,PP bồi Fomex,,Decal giấy,,,,1,1
+37,PP bồi Fomex,,Decal nhựa,,,,1,1
+37,PP bồi Fomex,,Khác,,,,1,1
+38,Băn rôn,,PP ngoài trời,,,,1,1
+38,Băn rôn,,PP trong nhà,,,,1,1
+38,Băn rôn,,Hiflex,,,,1,1
+38,Băn rôn,,Decal trong,,,,1,1
+38,Băn rôn,,Decal giấy,,,,1,1
+38,Băn rôn,,Decal nhựa,,,,1,1
+38,Băn rôn,,Khác,,,,1,1

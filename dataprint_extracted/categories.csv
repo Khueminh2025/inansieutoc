@@ -1,0 +1,13 @@
+﻿id,name,show_on_homepage
+1,Đóng sách,
+2,Scan,
+3,Gia công,
+4,In nhanh lấy trong ngày,TRUE
+5,Thiết kế,TRUE
+6,Ấn Phẩm Văn Phòng,TRUE
+7,Ấn Phẩm Quảng Cáo,TRUE
+8,Phụ Kiện In Ấn,
+9,In Hồ Sơ Dự Án,TRUE
+10,Ấn Phẩm Cá Nhân,TRUE
+11,Thành phẩm Số Lượng Nhỏ,TRUE
+12,Dịch Vụ Khác,

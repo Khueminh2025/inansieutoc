@@ -4,6 +4,8 @@ from .forms import OrderForm
 from django.contrib import messages
 from django.http import HttpResponse
 from core.asset_utils import get_asset_url
+from core.models import Service, Shape, Size, Laminate, Material, ServiceOption, Paper
+from django.db.models import Q
 
 def service_categories(request):
     categories = ServiceCategory.objects.all()
@@ -16,24 +18,43 @@ def service_list(request, slug):
     services = category.services.all()
     return render(request, 'core/service_list.html', {'category': category, 'services': services,'banner_url':banner_url})
 
+# def service_detail(request, slug):
+#     service = get_object_or_404(Service, slug=slug)
+#     form = OrderForm()
+
+#     if request.method == 'POST':
+#         form = OrderForm(request.POST)
+#         if form.is_valid():
+#             order = form.save(commit=False)
+#             order.service = service
+#             order.total_price = service.price * order.quantity
+#             order.save()
+#             return redirect('order_payment', order_code=order.order_code)
+
+#     return render(request, 'core/service_detail.html', {
+#         'service': service,
+#         'form': form
+#     })
 def service_detail(request, slug):
     service = get_object_or_404(Service, slug=slug)
-    form = OrderForm()
+    options = ServiceOption.objects.filter(service=service)
 
-    if request.method == 'POST':
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            order = form.save(commit=False)
-            order.service = service
-            order.total_price = service.price * order.quantity
-            order.save()
-            return redirect('order_payment', order_code=order.order_code)
+    # Lọc ra các tùy chọn thực sự tồn tại
+    shapes = Shape.objects.filter(id__in=options.values_list('shape_id', flat=True).distinct(), name__isnull=False)
+    sizes = Size.objects.filter(id__in=options.values_list('size_id', flat=True).distinct(), name__isnull=False)
+    laminates = Laminate.objects.filter(id__in=options.values_list('laminate_id', flat=True).distinct(), name__isnull=False)
+    papers = Paper.objects.filter(id__in=options.values_list('paper_id', flat=True).distinct(), name__isnull=False)
+    materials = Material.objects.filter(id__in=options.values_list('material_id', flat=True).distinct(), name__isnull=False)
 
-    return render(request, 'core/service_detail.html', {
-        'service': service,
-        'form': form
+    return render(request, "core/service_detail.html", {
+        "service": service,
+        "shapes": shapes,
+        "sizes": sizes,
+        "laminates": laminates,
+        "papers": papers,
+        "materials": materials,
     })
-
+    
 def order_payment(request, order_code):
     order = get_object_or_404(Order, order_code=order_code)
     return render(request, 'core/order_payment.html', {'order': order})

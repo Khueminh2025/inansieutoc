@@ -1,0 +1,46 @@
+﻿id,name,title,description,is_featured,category_ids
+1,Đóng kim keo,cực chắc chắn,Đóng kim vào gáy sách và dán băng keo,,1
+2,Đóng kim kiếng,Chắc chắn và có tờ nilong bảo vệ,"Đóng kim vào gáy sách, bỏ 2 miếng kiếng trước và sau, dán băng keo",,1
+3,Đóng lò xo xoắn,lò xo xoắn ốc,"Đóng lò xo, Có miếng kiếng trước và sau, thoải mái lật sách",,1
+4,Đóng lò xo nhựa,lò xo xoắn nhựa,"Đóng lò xo, Có miếng kiếng trước và sau, thoải mái lật sách",,1
+5,Đóng lò xo kẽm,lò xo xoắn kẽm,"Đóng lò xo, Có miếng kiếng trước và sau, thoải mái lật sách",,1
+6,Ép keo nhiệt,Gay sách ép keo nhiệt,Gay sách ép keo nhiệt,TRUE,"1,3"
+7,Đóng bìa cứng,Gay đóng bìa cứng,Gay đóng bìa cứng,TRUE,"1,3"
+8,Scan,Scan tài liệu,Scan tài liệu,,2
+9,Ép kim,Ép nhũ,Ép nhũ vàng hoặc bạc,,"1,3"
+10,Cắt thành phẩm,Cắt tài liệu,Cắt nhiều kích thước,,"1,3"
+11,Cán màn,Cán màn bảo vệ,Cán bóng hoặc mờ,,3
+12,Ép plasitc,Ép nhựa cứng,Ép nhiều thể loại nhựa,,3
+13,Ép bọc,Ép nhựa dẻo,Ép nhựa dẻo bọc tài liệu,,3
+14,In trắng đen,in tài liệu trắng đen,in trắng đen trên nhiều chất liệu,,4
+15,In màu,in tài liệu màu,In màu trên nhiều chất liệu và nhiều kỹ thuật in,,4
+16,In bản vẽ,In bản vẽ màu hoặc trắng đen,,,4
+17,Thiết kế theo mẫu,Thiết kế theo mẫu,Thiết kế theo mẫu,,5
+18,Thiết kế theo yêu cầu,Thiết kế theo yêu cầu,Thiết kế theo yêu cầu,,5
+19,Chỉnh sửa luận văn,Chỉnh sửa luận văn,Chỉnh sửa luận văn,,5
+20,Tạo file số lượng lớn,Tạo file số lượng lớn,Tạo file số lượng lớn,,5
+21,Danh thiếp,Danh thiếp,Danh thiếp,,6
+22,Sách ép keo nhiệt,Sách ép keo nhiệt,Sách ép keo nhiệt,,6
+23,Sách đóng bìa cứng,Sách đóng bìa cứng,Sách đóng bìa cứng,,6
+24,Bao thư,Bao thư,Bao thư,,6
+25,Giấy ghi chú,Giấy ghi chú,Giấy ghi chú,,6
+26,Giấy tiêu đề,Giấy tiêu đề,Giấy tiêu đề,TRUE,6
+27,Bìa đựng hồ sơ,Bìa đựng hồ sơ,Bìa đựng hồ sơ,TRUE,6
+28,Voucher,Voucher,Voucher,TRUE,6
+29,Poster,Poster,Poster,TRUE,6
+30,Standee,Standee,Standee,TRUE,6
+31,Tờ rơi,Tờ rơi,Tờ rơi,TRUE,6
+32,Tờ gấp,Tờ gấp,Tờ gấp,TRUE,6
+33,Vé,Vé,Vé,TRUE,6
+34,Catalogue,Catalogue,Catalogue,TRUE,6
+35,Hasgtag cầm tay,Hasgtag cầm tay,Hasgtag cầm tay,TRUE,6
+36,Tranh Canvas,Tranh Canvas,Tranh Canvas,TRUE,6
+37,PP bồi Fomex,PP bồi Fomex,PP bồi Fomex,TRUE,6
+38,Băn rôn,Băn rôn,Băn rôn,,6
+39,Chân standee cuộn,Chân standee cuộn,Chân standee cuộn,,8
+40,Chân standee hộp,Chân standee hộp,Chân standee hộp,,8
+41,Bìa lá,Bìa lá,Bìa lá,,8
+42,Bao thư trắng,Bao thư trắng,Bao thư trắng,,8
+43,Hồ sơ xin việc,Hồ sơ xin việc,Hồ sơ xin việc,,8
+44,Foam trắng,Foam trắng,Foam trắng,,8
+45,Giấy A4 trắng,Giấy A4 trắng,Giấy A4 trắng,,8

@@ -1,67 +1,119 @@
 from django.contrib import admin
-from .models import *
+from django.utils.html import format_html
+import cloudinary.uploader
 from django import forms
 
-import cloudinary.uploader
+from .models import (
+    Category,
+    Service,
+    ServiceOption,
+    Shape,
+    Size,
+    Laminate,
+    Material,
+    Paper,SiteAsset,ServiceCategory,ServicePrice
+)
+from core.slug_utils import unique_slugify
 from core.utils.cloudinary_helpers import generate_unique_public_id
-from django.utils.html import format_html
-
-@admin.register(Order)
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ['order_code', 'customer_name', 'phone', 'status', 'created_at']
-    list_editable = ['status']  # ✅ Cho phép chỉnh trực tiếp
-    list_filter = ['status', 'created_at']
-    search_fields = ['order_code', 'customer_name', 'phone']
-    readonly_fields = ['order_code', 'total_price', 'created_at']
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    list_display = ['image_thumbnail','name', 'unit', 'price', 'is_featured']
+    list_display = [
+        'image_thumbnail',
+        'name',
+        'title',
+        'description',
+        'is_featured',        
+    ]
     list_editable = ['is_featured']
     search_fields = ['name']
     list_filter = ['is_featured', 'category']
     prepopulated_fields = {'slug': ('name',)}
-    readonly_fields = ['image_thumbnail']
-    
+    readonly_fields = [
+        'image_thumbnail',
+        'image_preview',
+    ]
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'title','slug', 'description','category', 'is_featured', )
+        }),
+        ('Hình ảnh & Mô tả', {
+            'fields': ('image', 'image_thumbnail', 'image_preview', )
+        }),
+    )
+
     def image_thumbnail(self, obj):
         if obj.image:
-            return format_html('<img src="{}" width="60" height="60" style="object-fit:cover;border-radius:6px;">', obj.image.url)
-        return "-"
-    image_thumbnail.short_description = "Hình ảnh"
+            return format_html(
+                '<img src="{}" width="60" height="60" ' \
+                'style="object-fit:cover;border-radius:6px;"/>',
+                obj.image.url
+            )
+        return '-'
+    image_thumbnail.short_description = 'Ảnh nhỏ'
+
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" style="max-width:300px; ' \
+                'border:1px solid #ddd; border-radius:4px; padding:2px;"/>',
+                obj.image.url
+            )
+        return 'No image'
+    image_preview.short_description = 'Ảnh preview'
 
     def save_model(self, request, obj, form, change):
-        # Nếu slug chưa có → tạo từ tên
+        # Giữ nguyên logic slug
         if not obj.slug:
-            from core.slug_utils import unique_slugify  # hoặc chỗ bạn định nghĩa
             obj.slug = unique_slugify(obj, obj.name)
-
+        # Upload ảnh lên Cloudinary nếu thay đổi
         if 'image' in form.changed_data and obj.image:
-            # Upload ảnh lên Cloudinary với public_id dựa trên slug
             upload_result = cloudinary.uploader.upload(
                 obj.image,
-                public_id=generate_unique_public_id("sieutoc/service", obj.slug),
-                folder="sieutoc/service",
+                public_id=generate_unique_public_id('sieutoc/service', obj.slug),
+                folder='sieutoc/service',
                 overwrite=True,
-                resource_type="image"
+                resource_type='image'
             )
-            # Gán lại image = public_id
-            obj.image = upload_result["secure_url"]
-
+            obj.image = upload_result['secure_url']
         super().save_model(request, obj, form, change)
 
-
-@admin.register(ServiceCategory)
-class ServiceCategoryAdmin(admin.ModelAdmin):
-    list_display = ['image_thumbnail','name','show_on_homepage']
-    readonly_fields = ['image_thumbnail']
-    list_editable = ['show_on_homepage']
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['image_thumbnail', 'name', 'show_on_homepage']
+    search_fields = ['name']
+    list_filter = ['show_on_homepage']
     prepopulated_fields = {'slug': ('name',)}
+    readonly_fields = ['image_thumbnail', 'image_preview']
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'slug', 'show_on_homepage')
+        }),
+        ('Hình ảnh', {
+            'fields': ('image', 'image_thumbnail', 'image_preview')
+        }),
+    )
+
     def image_thumbnail(self, obj):
         if obj.image:
-            return format_html('<img src="{}" width="60" height="60" style="object-fit:cover;border-radius:6px;">', obj.image.url)
-        return "-"
-    image_thumbnail.short_description = "Hình ảnh"
+            return format_html(
+                '<img src="{}" width="60" height="60" ' \
+                'style="object-fit:cover;border-radius:6px;"/>',
+                obj.image.url
+            )
+        return '-'
+    image_thumbnail.short_description = 'Ảnh nhỏ'
 
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" style="max-width:300px; ' \
+                'border:1px solid #ddd; border-radius:4px; padding:2px;"/>',
+                obj.image.url
+            )
+        return 'No image'
+    image_preview.short_description = 'Ảnh preview'
+    
     def save_model(self, request, obj, form, change):
         if not obj.slug:
             from core.slug_utils import unique_slugify
@@ -79,11 +131,24 @@ class ServiceCategoryAdmin(admin.ModelAdmin):
 
         super().save_model(request, obj, form, change)
 
-# admin.site.register(ServiceCategory)
-# admin.site.register(Service)
-admin.site.register(PrintMaterial)
-admin.site.register(PrintOption)
-# admin.site.register(Order)
+@admin.register(ServiceOption)
+class ServiceOptionAdmin(admin.ModelAdmin):
+    list_display = ('service', 'paper', 'material', 'shape', 'size', 'laminate')
+    list_filter = ('service', 'paper', 'material', 'shape', 'size', 'laminate')
+    search_fields = ['service__name']
+
+# Đăng ký các bảng phụ
+admin.site.register(Shape)
+admin.site.register(Size)
+admin.site.register(Laminate)
+admin.site.register(Material)
+admin.site.register(Paper) 
+
+@admin.register(ServicePrice)
+class ServicePriceAdmin(admin.ModelAdmin):
+    list_display = ('service', 'paper', 'material', 'shape', 'size', 'laminate', 'quantity', 'price')
+    list_filter = ('service', 'paper', 'material', 'shape', 'size', 'laminate', 'quantity')
+    search_fields = ('service__name',)
 
 class SiteAssetForm(forms.ModelForm):
     class Meta:
