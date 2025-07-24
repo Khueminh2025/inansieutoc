@@ -80,7 +80,6 @@ class Command(BaseCommand):
                     shape=get_fk(Shape, row['shape_name']),
                     size=get_fk(Size, row['size_name']),
                     laminate=get_fk(Laminate, row['laminate_name']),
-                    defaults={'price': float(row['price'] or 0)},
                 )
                 count += 1
             self.stdout.write(self.style.SUCCESS(f'✔ Imported {count} ServiceOptions'))
@@ -96,6 +95,8 @@ class Command(BaseCommand):
 
                 def get_fk(model, val):
                     return model.objects.filter(name=val.strip()).first() if val.strip() else None
+                quantity = int(row.get('quantity', 0) or 0)
+                price = float(row.get('price', 0) or 0)
 
                 obj, created = ServicePrice.objects.update_or_create(
                     service=service,
