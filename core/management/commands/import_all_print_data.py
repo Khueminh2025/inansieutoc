@@ -3,7 +3,7 @@ import os
 from django.core.management.base import BaseCommand
 from core.models import (
     Category, Shape, Size, Laminate, Material, Paper,
-    Service, ServiceOption, ServiceOptionPrice
+    Service, ServiceOption, ServicePrice
 )
 
 class Command(BaseCommand):
@@ -17,7 +17,15 @@ class Command(BaseCommand):
                 reader = csv.DictReader(f)
                 count = 0
                 for row in reader:
-                    defaults = {field: row[field].strip() for field in fields if row[field].strip() != ""}
+                    defaults = {}
+                    for field in fields:
+                        value = row[field].strip()
+                        if value == "":
+                            continue
+                        if field in ['show_on_homepage']:  # thêm các field boolean khác nếu có
+                            value = value.lower() in ['1', 'true', 'yes']
+                        defaults[field] = value                   
+                    
                     obj, created = model.objects.update_or_create(
                         id=int(row['id']),
                         defaults=defaults
@@ -72,13 +80,12 @@ class Command(BaseCommand):
                     shape=get_fk(Shape, row['shape_name']),
                     size=get_fk(Size, row['size_name']),
                     laminate=get_fk(Laminate, row['laminate_name']),
-                    quantity=int(row['quantity']),
                     defaults={'price': float(row['price'] or 0)},
                 )
                 count += 1
             self.stdout.write(self.style.SUCCESS(f'✔ Imported {count} ServiceOptions'))
 
-        # 4️⃣ Import ServiceOptionPrice
+        # 4️⃣ Import ServiceOption
         with open(os.path.join(base_dir, 'service_option_prices.csv'), encoding='utf-8-sig') as f:
             reader = csv.DictReader(f)
             count = 0
@@ -90,7 +97,7 @@ class Command(BaseCommand):
                 def get_fk(model, val):
                     return model.objects.filter(name=val.strip()).first() if val.strip() else None
 
-                obj, created = ServiceOptionPrice.objects.update_or_create(
+                obj, created = ServicePrice.objects.update_or_create(
                     service=service,
                     paper=get_fk(Paper, row['paper_name']),
                     material=get_fk(Material, row['material_name']),
