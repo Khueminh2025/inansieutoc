@@ -2,28 +2,55 @@
 {% block content %}
 {% load static %}
 
-<div class="flex justify-center items-center min-h-screen bg-gray-50 px-4">
-  <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-xl text-center">
-    
-    <h2 class="text-2xl font-bold text-green-700 mb-6">Xác nhận thanh toán</h2>
+<div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+  <h2 class="text-2xl font-bold mb-4">Thanh toán</h2>
 
-    <div class="text-left space-y-2 text-gray-700 mb-6">
-      <p><strong>Mã đơn:</strong> {{ order.order_code }}</p>
-      <p><strong>Khách hàng:</strong> {{ order.customer_name }}</p>
-      <p><strong>Điện thoại:</strong> {{ order.phone }}</p>
-      <p><strong>Sản phẩm:</strong> {{ order.service.name }} ({{ order.quantity }} x {{ order.service.price }}đ)</p>
-      <p><strong>Tổng tiền:</strong> <span class="text-green-600 font-bold">{{ order.total_price }}đ</span></p>
-    </div>
+  <p><strong>Khách hàng:</strong> {{ order.customer_name }}</p>
+  <p><strong>Điện thoại:</strong> {{ order.phone }}</p>
+  <p><strong>Email:</strong> {{ order.email }}</p>
 
-    <h3 class="text-lg font-semibold text-gray-800 mb-3">Quét mã QR để thanh toán:</h3>
-    <div class="flex justify-center">
-      <img src="{% static 'images/qr-bank.png' %}" alt="QR Code" class="w-60 h-60 border rounded">
-    </div>
+  {% if order.shipping == 'delivery' %}
+    <p class="mt-2"><strong>Địa chỉ giao:</strong><br>
+      {{ order.city }}, {{ order.district }}<br>
+      {{ order.address_detail }}
+    </p>
+  {% else %}
+    <p class="mt-2"><strong>Hình thức:</strong> Khách đến nhận tại cửa hàng</p>
+  {% endif %}
 
-    <a href="{% url 'order_verify' %}?code={{ order.order_code }}&phone={{ order.phone }}"
-       class="inline-block mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow">
-       Tôi đã thanh toán
-    </a>
+  <p class="mt-4"><strong>Sản phẩm:</strong> {{ order.service.title }}</p>
+  <p><strong>Ngày đặt:</strong> {{ order.created_at|date:"d/m/Y H:i" }}</p>
+  <p><strong>Tổng tiền:</strong> {{ order.total_price|intcomma }}₫</p>
+
+  <!-- QR ngân hàng tĩnh -->
+  <div class="my-6 text-center">
+    <img src="{% static bank_qr_path %}"
+         alt="QR thanh toán"
+         class="inline-block w-48 h-48 border p-2 rounded" />
+    <p class="mt-2 text-sm text-gray-600">Quét mã bên trên để thanh toán</p>
   </div>
+
+  <!-- Nội dung chuyển khoản -->
+  <div class="bg-gray-100 p-4 rounded flex items-center space-x-2">
+    <input id="transfer-note" type="text"
+           class="flex-1 p-2 border rounded"
+           value="{{ transfer_note }}"
+           readonly />
+    <button type="button"
+            onclick="navigator.clipboard.writeText(document.getElementById('transfer-note').value)"
+            class="px-4 py-2 bg-blue-600 text-white rounded">
+      Copy
+    </button>
+  </div>
+
+  <!-- Nút xác nhận đã chuyển khoản -->
+  <form method="post" action="{% url 'order_verify' %}" class="mt-6 text-center">
+    {% csrf_token %}
+    <input type="hidden" name="order_code" value="{{ order.order_code }}" />
+    <button type="submit"
+            class="bg-green-600 text-white px-6 py-2 rounded">
+      Tôi đã thanh toán
+    </button>
+  </form>
 </div>
 {% endblock %}

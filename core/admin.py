@@ -159,7 +159,7 @@ class SiteAssetForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         # Lấy danh sách key
-        static_keys = [('banner-home', 'Trang chủ')]
+        static_keys = [('banner-home', 'Trang chủ'),('banner-home-mid', 'Trang chủ ở giữa')]
         dynamic_keys = [
             (f'banner-{cat.slug}', f'Banner - {cat.name}')
             for cat in ServiceCategory.objects.all()

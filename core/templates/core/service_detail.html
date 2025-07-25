@@ -1,183 +1,135 @@
-{% extends "base.html" %}
 
+{% extends "base.html" %} 
+{% load static %} 
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 py-8">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
     <!-- Ảnh dịch vụ -->
     <div class="bg-white p-4 rounded-xl shadow">
       {% if service.image %}
-        <img src="{{ service.image.url }}" alt="{{ service.name }}" class="w-full h-auto object-contain rounded-lg">
+      <img
+        src="{{ service.image.url }}"
+        alt="{{ service.name }}"
+        class="w-full h-auto object-contain rounded-lg"
+      />
       {% endif %}
     </div>
 
-    <!-- Thông tin dịch vụ -->
+    <!-- Thông tin & lựa chọn của bạn -->
     <div class="bg-white p-6 rounded-xl shadow space-y-6">
-      <h1 class="text-2xl font-bold text-red-600 uppercase">{{ service.name }}</h1>
+      <h1 class="text-2xl font-bold text-red-600 uppercase">
+        {{ service.name }}
+      </h1>
+
       {% if service.description %}
-        <p class="text-sm text-gray-600 italic">{{ service.description }}</p>
+      <p class="text-sm text-gray-600 italic">{{ service.description }}</p>
       {% endif %}
 
-      <!-- Thông số cơ bản -->
-      {% if service.description %}
-      <div>
-        <h2 class="text-green-700 font-bold mb-2">THÔNG SỐ CƠ BẢN</h2>
-        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
-          {% for line in service.description.splitlines %}
-            <li>{{ line }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-      <!-- YÊU CẦU CỦA BẠN -->
       <div class="space-y-4">
-        <h2 class="text-green-700 font-bold">YÊU CẦU CỦA BẠN</h2>
+        <h2 class="text-green-700 font-bold uppercase">YÊU CẦU CỦA BẠN</h2>
 
-        <!-- Hình Dạng -->
+        <!-- Example: Hình Dáng-->
         {% if shapes.exists %}
+
         <div>
-    <label class="block font-medium mb-1">Hình Dạng 🟢</label>
-    {% if shapes|length < 4 %}
-        <div class="flex flex-wrap gap-2">
+          <label class="block font-medium mb-1">Hình Dáng</label>
+          <select
+            name="shape" id="shape"
+            class="w-full border border-gray-300 rounded px-3 py-2"
+          >
             {% for shape in shapes %}
-                <button type="button"
-                        class="border border-green-500 px-4 py-2 rounded hover:bg-green-100">
-                    {{ shape.name }}
-                </button>
+            <option value="{{ shape.id }}">{{ shape.name }}</option>
             {% endfor %}
+          </select>
         </div>
-    {% else %}
-        <select class="w-full border border-gray-300 rounded px-3 py-2">
-            {% for shape in shapes %}
-                <option value="{{ shape.id }}">{{ shape.name }}</option>
-            {% endfor %}
-        </select>
-    {% endif %}
-</div>
-        {% endif %}
 
-        <!-- Loại Giấy -->
-        {% if papers.exists %}
-        <div>
-    <label class="block font-medium mb-1">Hình Dạng 🟢</label>
-    {% if papers|length < 4 %}
-        <div class="flex flex-wrap gap-2">
-            {% for paper in papers %}
-                <button type="button"
-                        class="border border-green-500 px-4 py-2 rounded hover:bg-green-100">
-                    {{ paper.name }}
-                </button>
-            {% endfor %}
-        </div>
-    {% else %}
-        <select class="w-full border border-gray-300 rounded px-3 py-2">
-            {% for paper in papers %}
-                <option value="{{ paper.id }}">{{ paper.name }}</option>
-            {% endfor %}
-        </select>
-    {% endif %}
-</div>
         {% endif %}
-
-         <!-- Chất liệu -->
-        {% if materials.exists %}
-        <div>
-    <label class="block font-medium mb-1">Hình Dạng 🟢</label>
-    {% if materials|length < 4 %}
-        <div class="flex flex-wrap gap-2">
-            {% for material in materials %}
-                <button type="button"
-                        class="border border-green-500 px-4 py-2 rounded hover:bg-green-100">
-                    {{ material.name }}
-                </button>
-            {% endfor %}
-        </div>
-    {% else %}
-        <select class="w-full border border-gray-300 rounded px-3 py-2">
-            {% for material in materials %}
-                <option value="{{ material.id }}">{{ material.name }}</option>
-            {% endfor %}
-        </select>
-    {% endif %}
-</div>
-        {% endif %}
-
-         <!-- Kích thước -->
+        <!-- Example: Kích Thước-->
         {% if sizes.exists %}
+
         <div>
-    <label class="block font-medium mb-1">Hình Dạng 🟢</label>
-    {% if sizes|length < 4 %}
-        <div class="flex flex-wrap gap-2">
+          <label class="block font-medium mb-1">Kích Thước</label>
+          <select
+            name="size"  id="size"
+            class="w-full border border-gray-300 rounded px-3 py-2"
+          >
             {% for size in sizes %}
-                <button type="button"
-                        class="border border-green-500 px-4 py-2 rounded hover:bg-green-100">
-                    {{ size.name }}
-                </button>
+            <option value="{{ size.id }}">{{ size.name }}</option>
             {% endfor %}
+          </select>
         </div>
-    {% else %}
-        <select class="w-full border border-gray-300 rounded px-3 py-2">
-            {% for size in sizes %}
-                <option value="{{ size.id }}">{{ size.name }}</option>
-            {% endfor %}
-        </select>
-    {% endif %}
-</div>
+
         {% endif %}
 
- <!-- Cán màn -->
-        {% if laminates.exists %}
-        <div>
-    <label class="block font-medium mb-1">Hình Dạng 🟢</label>
-    {% if laminates|length < 4 %}
-        <div class="flex flex-wrap gap-2">
-            {% for laminate in laminates %}
-                <button type="button"
-                        class="border border-green-500 px-4 py-2 rounded hover:bg-green-100">
-                    {{ laminate.name }}
-                </button>
-            {% endfor %}
-        </div>
-    {% else %}
-        <select class="w-full border border-gray-300 rounded px-3 py-2">
-            {% for laminate in laminates %}
-                <option value="{{ laminate.id }}">{{ laminate.name }}</option>
-            {% endfor %}
-        </select>
-    {% endif %}
-</div>
-        {% endif %}           
+        <!-- Example: Loại giấy-->
+        {% if papers.exists %}
 
-        <!-- Nút đặt hàng -->
-        <a href="{% url 'order_form' %}?service_slug={{ service.slug }}"
-           class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 text-lg font-semibold w-full block text-center mt-4">
-          ĐẶT HÀNG NGAY
-        </a>
+        <div>
+          <label class="block font-medium mb-1">Loại giấy</label>
+          <select
+            name="paper"  id="paper"
+            class="w-full border border-gray-300 rounded px-3 py-2"
+          >
+            {% for paper in papers %}
+            <option value="{{ paper.id }}">{{ paper.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        {% endif %}
+
+        <!-- Example: Chất Liệu-->
+        {% if materials.exists %}
+
+        <div>
+          <label class="block font-medium mb-1">Chất Liệu</label>
+          <select
+            name="material"  id="material"
+            class="w-full border border-gray-300 rounded px-3 py-2"
+          >
+            {% for material in materials %}
+            <option value="{{ material.id }}">{{ material.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        {% endif %}
+
+        <!-- Example: Cán Màn-->
+        {% if laminates.exists %}
+
+        <div>
+          <label class="block font-medium mb-1">Hình Dáng</label>
+          <select
+            name="laminate"  id="laminate"
+            class="w-full border border-gray-300 rounded px-3 py-2"
+          >
+            {% for laminate in laminates %}
+            <option value="{{ laminate.id }}">{{ laminate.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        {% endif %}
+
+        <div>
+  <label class="block font-medium mb-1">Số lượng</label>
+  <input type="number" id="quantity" name="quantity" value="1" min="1"
+         class="w-full border border-gray-300 rounded px-3 py-2" />
+</div>
+
+        <!-- Nút mở modal -->
+<button id="openOrderModal"
+        class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded shadow">
+  ĐẶT HÀNG NGAY
+</button>
       </div>
     </div>
-  </div>
-</div>
+    </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  function handleOtherInput(buttonsSelector, otherInputSelector) {
-    document.querySelectorAll(buttonsSelector).forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        if (btn.textContent.trim().toLowerCase() === 'khác') {
-          document.querySelector(otherInputSelector).classList.toggle('hidden');
-          document.querySelector(otherInputSelector).focus();
-        } else {
-          document.querySelector(otherInputSelector).classList.add('hidden');
-        }
-      });
-    });
-  }
+{% include "core/includes/order_modal.html" %}
+{% endblock %} 
+{% block extra_js%}
 
-  handleOtherInput('.shape-btn', '#shape-other-input');
-  handleOtherInput('.material-btn', '#material-other-input');
-  handleOtherInput('.size-btn', '#size-other-input');
-  handleOtherInput('.laminate-btn', '#laminate-other-input');
-});
-</script>
+<script src="{% static 'core/js/order.js' %}"></script>
 {% endblock %}

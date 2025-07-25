@@ -6,7 +6,7 @@ import uuid
 
 
 def get_banner_key_choices():
-    static_keys = [('banner-home', 'Trang chủ')]
+    static_keys = [('banner-home', 'Trang chủ'),('banner-home-mid', 'Trang chủ ờ giữa')]
     dynamic_keys = [
         (f'banner-{cat.slug}', f'Banner - {cat.name}')
         for cat in ServiceCategory.objects.all()
@@ -200,6 +200,10 @@ class Order(models.Model):
     notes = models.TextField(blank=True, null=True)
     quantity = models.PositiveIntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
+    shipping = models.CharField(max_length=10, choices=[('delivery','Giao tận nơi'),('pickup','Đến lấy')],default='pickup' )
+    city = models.CharField(max_length=100, blank=True)
+    district = models.CharField(max_length=100, blank=True)
+    address_detail = models.TextField(blank=True)
 
     class Meta:
         verbose_name = "Đơn hàng"

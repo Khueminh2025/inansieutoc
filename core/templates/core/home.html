@@ -2,30 +2,11 @@
 {% block content %}
 {% load static %}
 
-{% if banner_url %}
-   <div class="max-w-screen-lg mx-auto px-4 mb-8">
-    <img src="{{ banner_url }}" alt="Banner" class="w-full h-auto object-cover rounded-xl shadow-md">
-  </div>
-{% endif %}
-
-<h2 class="text-2xl font-bold mb-4 text-green-700 text-center">DANH MỤC DỊCH VỤ</h2>
-<div class="max-w-screen-lg mx-auto px-4">
-  <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
-    {% for cat in categories %}
-      <a href="{% url 'service_list' cat.slug %}" class="flex flex-col items-center bg-white p-3 rounded-lg shadow hover:shadow-md transition duration-200 text-center">
-        <div class="w-16 h-16 sm:w-20 sm:h-20 mb-2 rounded-full overflow-hidden border border-gray-200">
-          <img src="{{ cat.image.url|default:'https://via.placeholder.com/100x100?text=No+Image' }}" class="w-full h-full object-cover" alt="{{ cat.name }}">
-        </div>
-        <span class="text-xs sm:text-sm font-medium text-gray-800">{{ cat.name }}</span>
-      </a>
-    {% endfor %}
-  </div>
-</div>
 <!-- CTA: ĐẶT IN NGAY -->
-<a href="/dich-vu/in-nhanh/" class="block max-w-screen-lg mx-auto mb-12 px-4 mt-4">
+<a href="/dich-vu/in-nhanh/" class="block max-w-screen-lg mx-auto mb-1 px-4 mt-4">
   <div class="relative group overflow-hidden rounded-xl shadow-lg">
     <!-- Ảnh nền: thu nhỏ chiều cao -->
-    <img src="{% static 'images/duy.jpg' %}" alt="Đặt in ngay"
+    <img src="{{ banner_url }}" alt="Đặt in ngay"
          class="w-full h-40 sm:h-48 md:h-80 object-cover transition-transform duration-300 group-hover:scale-105">
 
     <!-- Dòng chữ hiện khi hover -->
@@ -36,6 +17,26 @@
     </div>
   </div>
 </a>
+
+
+
+<h2 class="text-2xl font-bold mb-4 text-green-700 text-center">DANH MỤC DỊCH VỤ</h2>
+<div class="max-w-screen-lg mx-auto px-4">
+  <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-4">
+    {% for cat in categories %}
+      <a href="{% url 'service_list' cat.slug %}" class="flex flex-col items-center bg-white p-3 rounded-lg shadow hover:shadow-md transition duration-200 text-center">
+        <div class="w-16 h-16 sm:w-20 sm:h-20 mb-2 rounded-full overflow-hidden border border-gray-200">
+          <img src="{{ cat.image.url|default:'https://via.placeholder.com/100x100?text=No+Image' }}" class="w-full h-full object-cover" alt="{{ cat.name }}">
+        </div>
+        <span class="text-xs sm:text-sm font-medium text-gray-800">{{ cat.name }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+
+   <div class="max-w-screen-lg mx-auto px-4 mb-4">
+    <img src="{{ banner_mid_url }}" alt="Banner" class="w-full h-auto object-cover rounded-xl shadow-md">
+  </div>
 
 
 {% if featured_services %}
