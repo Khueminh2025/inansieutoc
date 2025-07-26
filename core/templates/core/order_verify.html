@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load humanize %}
 {% block content %}
 
 <div class="flex justify-center items-center min-h-screen bg-gray-50 px-4">
@@ -38,7 +39,7 @@
         <li><strong>Khách hàng:</strong> {{ order.customer_name }}</li>
         <li><strong>Số điện thoại:</strong> {{ order.phone }}</li>
         <li><strong>Sản phẩm:</strong> {{ order.service.name }} ({{ order.quantity }} x {{ order.service.price }}đ)</li>
-        <li><strong>Tổng tiền:</strong> {{ order.total_price }}đ</li>
+        <li><strong>Tổng tiền:</strong> {{ order.total_price|intcomma }}đ</li>
         <li><strong>Trạng thái:</strong> {{ order.get_status_display }}</li>
       </ul>
     {% elif request.GET.code %}

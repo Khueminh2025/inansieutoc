@@ -18,23 +18,7 @@ def service_list(request, slug):
     services = category.services.all()
     return render(request, 'core/service_list.html', {'category': category, 'services': services,'banner_url':banner_url})
 
-# def service_detail(request, slug):
-#     service = get_object_or_404(Service, slug=slug)
-#     form = OrderForm()
 
-#     if request.method == 'POST':
-#         form = OrderForm(request.POST)
-#         if form.is_valid():
-#             order = form.save(commit=False)
-#             order.service = service
-#             order.total_price = service.price * order.quantity
-#             order.save()
-#             return redirect('order_payment', order_code=order.order_code)
-
-#     return render(request, 'core/service_detail.html', {
-#         'service': service,
-#         'form': form
-#     })
 def service_detail(request, slug):
     service = get_object_or_404(Service, slug=slug)
     options = ServiceOption.objects.filter(service=service)
@@ -69,18 +53,17 @@ def order_payment(request, order_code):
     })
 
 def order_verify(request):
-    code = request.GET.get("code")
-    phone = request.GET.get("phone")
     order = None
+    code = request.GET.get('code')
+    phone = request.GET.get('phone')
 
     if code and phone:
-        order = Order.objects.filter(order_code=code, phone=phone).first()
+        try:
+            order = Order.objects.get(order_code=code, phone=phone)
+        except Order.DoesNotExist:
+            order = None
 
-    return render(request, 'core/order_verify.html', {
-        'order': order,
-        'code': code,
-        'phone': phone,
-    })
+    return render(request, 'core/order_verify.html', {'order': order})
 def home(request):
     categories = ServiceCategory.objects.all()
     featured_services = Service.objects.filter(is_featured=True)[:6]
@@ -116,79 +99,49 @@ def order_create_view(request):
 
 # core/views.py (thêm vào cuối file)
 from django.http import JsonResponse
-from django.urls import reverse
+from django.shortcuts import get_object_or_404, redirect
+from .models import Order,OrderItem, Service  # Service nếu có
 from django.views.decorators.csrf import csrf_exempt
-
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from django.shortcuts import get_object_or_404
-from django.urls import reverse
-from .models import Service, ServicePrice, Order
 
 @csrf_exempt
-def order_create_ajax(request):
-    if request.method != 'POST':
-        return JsonResponse({'error': 'Only POST allowed'}, status=405)
+def create_order(request, service_id):
+    if request.method == 'POST':
+        try:
+            # 1. Tạo đơn hàng (chỉ lưu thông tin KH + tổng tiền)
+            order = Order.objects.create(
+                customer_name=request.POST.get('name'),
+                email=request.POST.get('email'),
+                phone=request.POST.get('phone'),
+                delivery_method=request.POST.get('shipping'),
+                address_city=request.POST.get('city'),
+                address_district=request.POST.get('district'),
+                address_detail=request.POST.get('address'),
+                total_price=int(request.POST.get('total_price')),
+                receive_time='Lấy ngay',  # có thể tùy chỉnh
+            )
 
-    try:
-        # --- 1. Lấy service từ slug ---
-        service_slug = request.POST.get('service_slug')
-        service = get_object_or_404(Service, slug=service_slug)
+            # 2. Tạo dòng chi tiết đơn hàng
+            OrderItem.objects.create(
+                order=order,
+                service_id=service_id,
+                shape=request.POST.get('shape'),
+                size=request.POST.get('size'),
+                paper_type=request.POST.get('paper'),
+                material=request.POST.get('material'),
+                laminate=request.POST.get('laminate'),
+                quantity=int(request.POST.get('quantity')),
+                price=int(request.POST.get('total_price')),
+            )
 
-        # --- 2. Lấy lựa chọn của khách ---
-        opts = {
-            'paper_id':    request.POST.get('paper'),
-            'size_id':     request.POST.get('size'),
-            'shape_id':    request.POST.get('shape'),
-            'laminate_id': request.POST.get('laminate'),
-            'material_id': request.POST.get('material'),
-        }
-        quantity = int(request.POST.get('quantity', 1))
+            return JsonResponse({
+                'success': True,
+                'redirect_url': f'/thanh-toan/{order.order_code}/'
+            })
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
 
-        # --- 3. Tìm giá ---
-        price_obj = ServicePrice.objects.filter(service=service, **opts).first()
-        if not price_obj:
-            return JsonResponse({'error': 'Không tìm thấy giá phù hợp.'}, status=400)
-        total_price = price_obj.price * quantity
+    return JsonResponse({'success': False, 'error': 'Yêu cầu không hợp lệ'})
 
-        # --- 4. Lấy thông tin liên hệ ---
-        name    = request.POST.get('name', '').strip()
-        phone   = request.POST.get('phone', '').strip()
-        email   = request.POST.get('email', '').strip()
-        notes   = request.POST.get('notes', '')
-        shipping = request.POST.get('shipping', 'pickup')  # 'delivery' hoặc 'pickup'
-
-        # --- 5. Lấy địa chỉ nếu có giao hàng ---
-        city     = request.POST.get('city', '')
-        district = request.POST.get('district', '')
-        address  = request.POST.get('address', '')
-
-        # --- 6. Tạo đơn hàng ---
-        order = Order.objects.create(
-            service       = service,
-            paper_id      = opts['paper_id'],
-            size_id       = opts['size_id'],
-            shape_id      = opts['shape_id'],
-            laminate_id   = opts['laminate_id'],
-            material_id   = opts['material_id'],
-            quantity      = quantity,
-            total_price   = total_price,
-            customer_name = name,
-            phone         = phone,
-            email         = email,
-            notes         = notes,
-            shipping      = shipping,
-            city          = city,
-            district      = district,
-            address_detail= address,
-            # order_code, status, etc nếu bạn có default
-        )
-
-        # --- 7. Trả về redirect URL ---
-        return JsonResponse({
-            'success': True,
-            'redirect_url': reverse('order_payment', args=[order.order_code])
-        })
-
-    except Exception as e:
-        return JsonResponse({'error': f'Lỗi hệ thống: {str(e)}'}, status=500)
+def checkout(request, order_code):
+    order = get_object_or_404(Order, order_code=order_code)
+    return render(request, 'core/checkout.html', {'order': order})

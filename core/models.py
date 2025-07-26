@@ -3,6 +3,7 @@ from cloudinary.models import CloudinaryField
 from core.slug_utils import unique_slugify
 from core.utils.cloudinary_helpers import generate_unique_public_id
 import uuid
+from django.utils import timezone
 
 
 def get_banner_key_choices():
@@ -21,12 +22,7 @@ class SiteAsset(models.Model):
     def __str__(self):
         return self.key
 
-ORDER_STATUS = [
-    ('pending', 'Chưa thanh toán'),
-    ('paid', 'Đã thanh toán'),
-    ('processing', 'Đang tiến hành'),
-    ('completed', 'Đã hoàn thành'),
-]
+
 
 def generate_order_code():
     today_str = now().strftime('%Y%m%d')
@@ -194,24 +190,50 @@ class ServiceOption(models.Model):
         return " - ".join(parts)
 
 class Order(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Chờ thanh toán'),
+        ('paid', 'Đã thanh toán'),
+        ('canceled', 'Đã hủy'),
+        ('printing', 'Đang tiến hành'),
+        ('printed', 'Đã hoàn thành'),
+    ]
     customer_name = models.CharField(max_length=255)
-    phone = models.CharField(max_length=50)
-    email = models.EmailField()
-    notes = models.TextField(blank=True, null=True)
-    quantity = models.PositiveIntegerField(default=1)
+    phone = models.CharField(max_length=20)
+    email = models.EmailField(blank=True, null=True)
+
+    address_city = models.CharField(max_length=100, blank=True, null=True)
+    address_district = models.CharField(max_length=100, blank=True, null=True)
+    address_detail = models.TextField(blank=True, null=True)
+
+    delivery_method = models.CharField(max_length=50)
+    receive_time = models.CharField(max_length=50, default='Lấy ngay')
+    total_price = models.PositiveIntegerField(default=0)
+
+    order_code = models.CharField(max_length=20, unique=True, blank=True)
+    status = models.CharField(max_length=20, default='pending', choices=STATUS_CHOICES )
+
     created_at = models.DateTimeField(auto_now_add=True)
-    shipping = models.CharField(max_length=10, choices=[('delivery','Giao tận nơi'),('pickup','Đến lấy')],default='pickup' )
-    city = models.CharField(max_length=100, blank=True)
-    district = models.CharField(max_length=100, blank=True)
-    address_detail = models.TextField(blank=True)
 
-    class Meta:
-        verbose_name = "Đơn hàng"
-        verbose_name_plural = "Đơn hàng"
+    def save(self, *args, **kwargs):
+        if not self.order_code:
+            today_str = timezone.now().strftime("%y%m%d")
+            count_today = Order.objects.filter(order_code__startswith=today_str).count() + 1
+            self.order_code = f"{today_str}-{count_today}"
+        super().save(*args, **kwargs)
 
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE)
+    shape = models.CharField(max_length=50, blank=True)
+    size = models.CharField(max_length=50, blank=True)
+    paper_type = models.CharField(max_length=50, blank=True)
+    material = models.CharField(max_length=50, blank=True)
+    laminate = models.CharField(max_length=50, blank=True)
+
+    quantity = models.PositiveIntegerField(default=1)
+    price = models.PositiveIntegerField(default=0)
     def __str__(self):
-        return f"Order #{self.id} - {self.customer_name}"
-
+        return f"{self.order.order_code} - {self.service.name if self.service else 'Sản phẩm'}"
 
 
 class ServicePrice(models.Model):
@@ -231,3 +253,6 @@ class ServicePrice(models.Model):
 
     def __str__(self):
         return f"{self.service.name} | {self.paper} | {self.size} | {self.laminate} | {self.material} | {self.quantity} | {self.price} VND"
+    
+
+    
