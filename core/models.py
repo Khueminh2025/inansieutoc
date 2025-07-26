@@ -43,10 +43,17 @@ class Category(models.Model):
         verbose_name_plural = "Danh mục dịch vụ"
 
     def save(self, *args, **kwargs):
+        from core.utils.cloudinary_helpers import upload_image_to_cloudinary
+
         if not self.slug and self.name:
             self.slug = unique_slugify(self, self.name)
-        # if self.image and not getattr(self.image, 'public_id', None):
-        #     self.image.public_id = generate_unique_public_id("sieutoc/category", self.slug)
+
+        if self.image and not getattr(self.image, 'public_id', None):
+            uploaded_url = upload_image_to_cloudinary(
+             self.image, "sieutoc/category", self.slug
+        )
+        self.image = uploaded_url
+
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -119,11 +126,19 @@ class Service(models.Model):
         verbose_name_plural = "Các dịch vụ"
 
     def save(self, *args, **kwargs):
+        from core.utils.cloudinary_helpers import upload_image_to_cloudinary
+
         if not self.slug and self.name:
             self.slug = unique_slugify(self, self.name)
-        # if self.image and not getattr(self.image, 'public_id', None):
-        #     self.image.public_id = generate_unique_public_id("sieutoc/service", self.slug)
+
+        if self.image and not getattr(self.image, 'public_id', None):
+            uploaded_url = upload_image_to_cloudinary(
+                self.image, "sieutoc/service", self.slug
+            )
+            self.image = uploaded_url
+
         super().save(*args, **kwargs)
+
 
     def __str__(self):
         return self.name
