@@ -22,3 +22,22 @@ def generate_unique_public_id(base_folder, slug):
             break
 
     return public_id
+
+
+from cloudinary.uploader import upload
+from slugify import slugify
+
+def upload_image_to_cloudinary(image_file, folder, key):
+    """
+    Upload ảnh lên Cloudinary theo folder + key slug.
+    Trả về secure_url nếu thành công.
+    """
+    public_id = f"{folder}/{slugify(key)}"
+    result = upload(
+        image_file,
+        public_id=public_id,
+        folder=folder,
+        overwrite=True,
+        resource_type='image'
+    )
+    return result.get("secure_url")

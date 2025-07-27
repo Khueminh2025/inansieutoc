@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 import cloudinary.uploader
 from django import forms
+from django.utils.html import format_html
 
 from .models import (
     Category,
@@ -11,7 +12,8 @@ from .models import (
     Size,
     Laminate,
     Material,
-    Paper,SiteAsset,ServiceCategory,ServicePrice
+    Paper,SiteAsset,ServiceCategory,ServicePrice,
+    Order,OrderItem
 )
 from core.slug_utils import unique_slugify
 from core.utils.cloudinary_helpers import generate_unique_public_id
@@ -159,7 +161,7 @@ class SiteAssetForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         # Lấy danh sách key
-        static_keys = [('banner-home', 'Trang chủ')]
+        static_keys = [('banner-home', 'Trang chủ'),('banner-home-mid', 'Trang chủ ở giữa')]
         dynamic_keys = [
             (f'banner-{cat.slug}', f'Banner - {cat.name}')
             for cat in ServiceCategory.objects.all()
@@ -206,3 +208,31 @@ class SiteAssetAdmin(admin.ModelAdmin):
             obj.image = upload_result["secure_url"]
 
         super().save_model(request, obj, form, change)
+
+class OrderItemInline(admin.TabularInline):
+    model = OrderItem
+    extra = 0
+    readonly_fields = ('shape', 'size', 'paper_type', 'material', 'laminate', 'quantity', 'price')
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['order_code', 'customer_name', 'phone', 'item_count','status', 'total_price']
+    list_filter = ('status',)
+    list_editable = ['status']
+    search_fields = ('order_code', 'customer_name', 'phone')
+    ordering = ('-created_at',)
+    readonly_fields = ('order_code', 'created_at')
+    inlines = [OrderItemInline]
+    def item_count(self, obj):
+        return obj.items.count()
+    item_count.short_description = "SL Sản phẩm"
+
+
+@admin.register(OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ('order_info', 'quantity', 'price')
+    search_fields = ('order__order_code',)
+    def order_info(self, obj):
+            return f"Đơn hàng {obj.order.order_code}"
+    order_info.short_description = "Đơn hàng"
+

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    
+    <!-- Bên trái: QR và thông tin chuyển khoản -->
+    <div class="text-center space-y-4">
+      <h2 class="text-xl font-bold text-gray-800">CÔNG TY SIÊU TỐC</h2>
+
+      <img src="{% static 'images/qr-bank.png' %}" alt="QR Thanh toán" width="240" class="mx-auto rounded-lg border shadow">
+
+      <div class="mt-4 bg-gray-100 p-4 rounded-lg text-sm text-left">
+        <p class="font-medium text-gray-700 mb-2">💡 <strong>Nội dung chuyển khoản:</strong></p>
+        <div class="bg-white border px-3 py-2 rounded font-mono text-gray-800 select-all">
+          {{ order.order_code }} - {{ order.phone }}
+        </div>
+        <p class="text-xs text-gray-500 mt-2">* Vui lòng ghi đúng để hệ thống tự động xác nhận</p>
+      </div>
+    </div>
+
+    <!-- Bên phải: Thông tin đơn -->
+    <div>
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Thông tin đơn hàng</h2>
+
+      <div class="space-y-2 text-gray-700 text-base">
+        <p><strong>Mã đơn:</strong> {{ order.order_code }}</p>
+        <p><strong>Khách hàng:</strong> {{ order.name }}</p>
+        <p><strong>Số điện thoại:</strong> {{ order.phone }}</p>
+        <p><strong>Email:</strong> {{ order.email }}</p>
+        <p><strong>Ngày lấy hàng:</strong> {{ order.pickup_date }}</p>
+        <p><strong>Tổng tiền:</strong> <span class="text-green-600 font-semibold">{{ order.price|intcomma }} đ</span></p>
+      </div>
+
+      <div class="mt-6">
+        <a href="{% url 'order_verify' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl shadow-md transition">
+          Tôi đã thanh toán
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
