@@ -209,6 +209,7 @@ class SiteAssetAdmin(admin.ModelAdmin):
 
         super().save_model(request, obj, form, change)
 
+
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 0

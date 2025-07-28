@@ -4,7 +4,7 @@ from core.slug_utils import unique_slugify
 from core.utils.cloudinary_helpers import generate_unique_public_id
 import uuid
 from django.utils import timezone
-
+from core.utils.cloudinary_helpers import upload_image_to_cloudinary
 
 def get_banner_key_choices():
     static_keys = [('banner-home', 'Trang chủ'),('banner-home-mid', 'Trang chủ ờ giữa')]
@@ -15,13 +15,32 @@ def get_banner_key_choices():
     return static_keys + dynamic_keys
 
 class SiteAsset(models.Model):
-    key = models.CharField(max_length=100, unique=True,null=True, blank=True,  help_text="Khóa để phân biệt asset (ví dụ 'logo-header')")
+    key = models.CharField(max_length=100, unique=True, null=True, blank=True, help_text="Tên định danh dễ nhớ")
+    slug = models.SlugField(unique=True, null=True, blank=True, help_text="Slug chuẩn để truy xuất Cloudinary")
     image = CloudinaryField('image', blank=True, null=True)
     description = models.TextField(blank=True)
 
-    def __str__(self):
-        return self.key
+    class Meta:
+        verbose_name = "Tài nguyên hình ảnh"
+        verbose_name_plural = "Tài nguyên hình ảnh (Banner, Logo...)"
 
+    def save(self, *args, **kwargs):
+        from core.utils.cloudinary_helpers import upload_image_to_cloudinary
+        from slugify import slugify
+
+        if not self.slug and self.key:
+            self.slug = slugify(self.key)
+
+        if self.image and not getattr(self.image, 'public_id', None):
+            uploaded_url = upload_image_to_cloudinary(
+                self.image, "sieutoc/banners", self.slug
+            )
+            self.image = uploaded_url
+
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.key or self.slug
 
 
 def generate_order_code():
@@ -43,7 +62,7 @@ class Category(models.Model):
         verbose_name_plural = "Danh mục dịch vụ"
 
     def save(self, *args, **kwargs):
-        from core.utils.cloudinary_helpers import upload_image_to_cloudinary
+        
 
         if not self.slug and self.name:
             self.slug = unique_slugify(self, self.name)
@@ -65,50 +84,120 @@ ServiceCategory = Category
 
 class Shape(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    image = CloudinaryField('Hình ảnh', blank=True, null=True, folder='sieutoc/shape/')
 
     class Meta:
         verbose_name = "Hình dạng"
         verbose_name_plural = "Các hình dạng"
+
+    def save(self, *args, **kwargs):
+        if not self.slug and self.name:
+            self.slug = unique_slugify(self, self.name)
+
+        if self.image and not getattr(self.image, 'public_id', None):
+            uploaded_url = upload_image_to_cloudinary(
+                self.image, "sieutoc/shape", self.slug
+            )
+            self.image = uploaded_url
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
 
 class Size(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    image = CloudinaryField('Hình ảnh', blank=True, null=True, folder='sieutoc/size/')
 
     class Meta:
-        verbose_name = "Kích thước"
-        verbose_name_plural = "Các kích thước"
+        verbose_name = "Kích Thước"
+        verbose_name_plural = "Các loại Kích thước"
+
+    def save(self, *args, **kwargs):
+        if not self.slug and self.name:
+            self.slug = unique_slugify(self, self.name)
+
+        if self.image and not getattr(self.image, 'public_id', None):
+            uploaded_url = upload_image_to_cloudinary(
+                self.image, "sieutoc/size", self.slug
+            )
+            self.image = uploaded_url
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
 
 class Laminate(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    image = CloudinaryField('Hình ảnh', blank=True, null=True, folder='sieutoc/laminate/')
 
     class Meta:
-        verbose_name = "Cán màng"
-        verbose_name_plural = "Các loại cán màng"
+        verbose_name = "Cán Màn"
+        verbose_name_plural = "Các loại cán màn"
+
+    def save(self, *args, **kwargs):
+        if not self.slug and self.name:
+            self.slug = unique_slugify(self, self.name)
+
+        if self.image and not getattr(self.image, 'public_id', None):
+            uploaded_url = upload_image_to_cloudinary(
+                self.image, "sieutoc/laminate", self.slug
+            )
+            self.image = uploaded_url
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
-
+    
 class Material(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    image = CloudinaryField('Hình ảnh', blank=True, null=True, folder='sieutoc/material/')
 
     class Meta:
-        verbose_name = "Chất liệu"
-        verbose_name_plural = "Các chất liệu"
+        verbose_name = "Cán Màn"
+        verbose_name_plural = "Các loại cán màn"
+
+    def save(self, *args, **kwargs):
+        if not self.slug and self.name:
+            self.slug = unique_slugify(self, self.name)
+
+        if self.image and not getattr(self.image, 'public_id', None):
+            uploaded_url = upload_image_to_cloudinary(
+                self.image, "sieutoc/material", self.slug
+            )
+            self.image = uploaded_url
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
 
 class Paper(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    image = CloudinaryField('Hình ảnh', blank=True, null=True, folder='sieutoc/paper/')
 
     class Meta:
-        verbose_name = "Giấy"
+        verbose_name = "Loại giấy"
         verbose_name_plural = "Các loại giấy"
+
+    def save(self, *args, **kwargs):
+        if not self.slug and self.name:
+            self.slug = unique_slugify(self, self.name)
+
+        if self.image and not getattr(self.image, 'public_id', None):
+            uploaded_url = upload_image_to_cloudinary(
+                self.image, "sieutoc/paper", self.slug
+            )
+            self.image = uploaded_url
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
